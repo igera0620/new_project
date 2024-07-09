@@ -86,3 +86,7 @@ Instagram, Twitter, Facebook, TikTokなど: 筋トレやフィットネスに関
 # 画面遷移図
 
 [画面遷移図](https://www.figma.com/design/iI4guY9hV9iF5Yt4Lwx7ip/%E7%84%A1%E9%A1%8C?node-id=0-1&t=430NFehQVZY1Zuke-1)
+
+# ER図
+
+[ER図](https://app.diagrams.net/#G1XlPruLIQEjmU2XXZtbf92O9syXALfpEb#%7B%22pageId%22%3A%22R2lEEEUBdFMjLlhIrx00%22%7D)
