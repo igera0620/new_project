@@ -7,6 +7,9 @@ RUN apt-get update -qq \
   && rm -rf /var/lib/apt/lists/* \
   && npm install --global yarn
 
+# tailwindcss と postcss のインストールを追加
+RUN yarn add tailwindcss postcss autoprefixer
+
 # コンテナの作業ディレクトリを指定
 RUN mkdir /myapp
 WORKDIR /myapp
