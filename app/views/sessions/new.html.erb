@@ -1,0 +1,48 @@
+<div class="relative isolate overflow-hidden bg-gray-900">
+  <div class="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
+    <svg>
+      <defs>
+        <pattern id="pattern" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+          <path d="M.5 200V.5H200" fill="none" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" stroke-width="0" fill="url(#pattern)" />
+    </svg>
+  </div>
+  <div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
+    <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
+      <h1 class="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">ログイン</h1>
+      <p class="mt-6 text-lg leading-8 text-gray-300">ログインして筋トレメニューを利用しましょう。</p>
+      <%= form_with url: login_path, local: true, class: "mt-10 space-y-6" do |form| %>
+        <div>
+          <%= form.label :email, 'メールアドレス', class: 'block text-sm font-medium text-white' %>
+          <div class="mt-1">
+            <%= form.email_field :email, required: true, autocomplete: "email", class: 'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
+          </div>
+        </div>
+        <div>
+          <%= form.label :password, 'パスワード', class: 'block text-sm font-medium text-white' %>
+          <div class="mt-1">
+            <%= form.password_field :password, required: true, autocomplete: "current-password", class: 'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
+          </div>
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <%= form.check_box :remember_me, class: 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded' %>
+            <%= form.label :remember_me, 'ログイン状態を保持する', class: 'ml-2 block text-sm text-white' %>
+          </div>
+          <div class="text-sm">
+            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">パスワードをお忘れですか？</a>
+          </div>
+        </div>
+        <div>
+          <%= form.submit 'ログイン', class: 'flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' %>
+        </div>
+      <% end %>
+      <p class="mt-6 text-center text-sm text-gray-300">
+        アカウントをお持ちでないですか？
+        <%= link_to '新規アカウントを作成', new_user_registration_path, class: 'font-medium text-indigo-600 hover:text-indigo-500' %>
+      </p>
+    </div>
+  </div>
+</div>

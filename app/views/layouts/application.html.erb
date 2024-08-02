@@ -11,7 +11,11 @@
   </head>
 
   <body>
-    <%= render 'shared/header' %>
+    <%= render 'shared/flash' %>
+    <button id="toggle-header" class="fixed top-4 right-4 z-50 bg-gray-800 text-white p-2 rounded">aaa</button>
+    <header id="main-header" class="bg-gray-800 text-white p-4">
+      <%= render 'shared/header' %>
+    </header>
     <%= yield %>
     <%= render 'shared/footer' %>
   </body>
