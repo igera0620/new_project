@@ -9,6 +9,8 @@ Rails.application.config.sorcery.submodules = [:remember_me]
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
   config.user_config do |user|
+    user.username_attribute_names = [:email]
+    user.password_attribute_name = :password
     user.stretches = 1 if Rails.env.test?
     user.remember_me_for = 180 #変更
     end

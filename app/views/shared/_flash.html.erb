@@ -1,5 +1,9 @@
-<% flash.each do |key, message| %>
-  <div class="flash-message <%= flash_class(key) %>">
-    <%= message %>
+<% if flash[:notice] %>
+  <div class="flash notice fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-md z-50">
+    <%= flash[:notice] %>
+  </div>
+<% elsif flash[:alert] %>
+  <div class="flash alert fixed top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-4 py-2 rounded shadow-md z-50">
+    <%= flash[:alert] %>
   </div>
 <% end %>

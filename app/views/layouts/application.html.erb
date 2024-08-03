@@ -10,9 +10,15 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <%= render 'shared/flash' %>
-    <button id="toggle-header" class="fixed top-4 right-4 z-50 bg-gray-800 text-white p-2 rounded">aaa</button>
+  <body class="relative">
+    <div class="flash">
+      <%= render 'shared/flash' %>
+    </div>
+    <button id="toggle-header" class="fixed top-4 right-4 z-40 bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-2 rounded-full shadow-lg hover:from-purple-500 hover:to-indigo-500 transition-colors duration-300">
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+      </svg>
+    </button>
     <header id="main-header" class="bg-gray-800 text-white p-4">
       <%= render 'shared/header' %>
     </header>
