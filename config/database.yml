@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: new_project_production
-  username: new_project
-  password: <%= ENV["NEW_PROJECT_DATABASE_PASSWORD"] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
