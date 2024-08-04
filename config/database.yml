@@ -1,22 +1,21 @@
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV["DATABASE_USER"] %>
-  password: <%= ENV["DATABASE_PASSWORD"] %>
-  host: <%= ENV["DATABASE_HOST"] %>
+databases:
+  - name: myapp-database
+    databaseName: myapp_production_m3gx
+    user: igera0620
+    region: singapore
 
-development:
-  <<: *default
-  database: myapp_development
-
-test:
-  <<: *default
-  database: myapp_test
-
-production:
-  <<: *default
-  database: myapp_production
-  username: myapp
-  password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>
-  host: <%= ENV["DATABASE_HOST"] %>
+services:
+  - type: web
+    name: myapp-database
+    env: ruby
+    region: singapore
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: myapp-database
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false

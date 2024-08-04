@@ -10,7 +10,7 @@ gem "rails", "~> 7.0.8", ">= 7.0.8.4"
 gem "sprockets-rails"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+# gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -59,6 +59,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'sqlite3', '~> 1.4'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -72,6 +73,10 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 
+end
+
+group :production do
+  gem "pg", "~> 1.4"
 end
 
 gem "tailwindcss-rails", "~> 2.6"
