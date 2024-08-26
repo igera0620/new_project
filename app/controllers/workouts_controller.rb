@@ -24,7 +24,7 @@ class WorkoutsController < ApplicationController
     if @workout.save
       redirect_to show_video_workouts_path, notice: 'フィードバックが送信されました。'
     else
-      flash.now[:alert] = 'フィードバックの送信に失敗しました。'
+      flash.now[:alert] = "フィードバックの送信に失敗しました。"
       render :feedback
     end
   end
