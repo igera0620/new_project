@@ -1,0 +1,64 @@
+<div class="relative isolate overflow-hidden bg-gray-900">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-20">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">筋トレメニューを選択</h2>
+    </div>
+    <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
+
+    <%= form_with url: generate_menu_path, method: :post, local: true, data: { turbo: false } do %>
+      <%= hidden_field_tag :body_part, '胸' %>
+      <button type="submit" class="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
+        <div class="text-base leading-7">
+          <h3 class="font-semibold text-white">胸のトレーニング</h3>
+        </div>
+      </button>
+    <% end %>    
+
+      <%= form_with url: generate_menu_path, method: :post, local: true, data: { turbo: false } do %>
+        <%= hidden_field_tag :body_part, '脚' %>
+        <button type="submit" class="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
+          <div class="text-base leading-7">
+            <h3 class="font-semibold text-white">脚のトレーニング</h3>
+          </div>
+        </button>
+      <% end %>
+
+      <%= form_with url: generate_menu_path, method: :post, local: true, data: { turbo: false } do %>
+        <%= hidden_field_tag :body_part, '腕' %>
+        <button type="submit" class="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
+          <div class="text-base leading-7">
+            <h3 class="font-semibold text-white">腕のトレーニング</h3>
+          </div>
+        </button>
+      <% end %>
+
+      <%= form_with url: generate_menu_path, method: :post, local: true, data: { turbo: false } do %>
+        <%= hidden_field_tag :body_part, '肩' %>
+        <button type="submit" class="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
+          <div class="text-base leading-7">
+            <h3 class="font-semibold text-white">肩のトレーニング</h3>
+          </div>
+        </button>
+      <% end %>
+
+      <%= form_with url: generate_menu_path, method: :post, local: true, data: { turbo: false } do %>
+        <%= hidden_field_tag :body_part, '背中' %>
+        <button type="submit" class="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
+          <div class="text-base leading-7">
+            <h3 class="font-semibold text-white">背中のトレーニング</h3>
+          </div>
+        </button>
+      <% end %>
+
+      <%= form_with url: generate_menu_path, method: :post, local: true, data: { turbo: false } do %>
+        <%= hidden_field_tag :body_part, '腹筋' %>
+        <button type="submit" class="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
+          <div class="text-base leading-7">
+            <h3 class="font-semibold text-white">腹筋のトレーニング</h3>
+          </div>
+        </button>
+      <% end %>
+
+    </div>
+  </div>
+</div>
