@@ -28,7 +28,7 @@ html, body {
 }
 
 #toggle-header {
-  z-index: 1050 !important; /* フラッシュメッセージより高いz-indexを設定 */
+  z-index: 1050 !important;
 }
 
 #main-header {
