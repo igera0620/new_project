@@ -21,9 +21,10 @@ Rails.application.routes.draw do
 
   resources :workouts do
     collection do
-      get 'show_video'      # 動画表示ページのルート
-      get 'feedback'        # フィードバックページのルート
-      post 'submit_feedback' # フィードバックの送信処理
+      get 'workout_completed'      # ワークアウト完了時のページ
+      get 'workout_not_completed'  # ワークアウト未完了時のページ
+      get 'feedback'               # フィードバックページのルート
+      post 'submit_feedback'       # フィードバックの送信処理
     end
   end  
 end

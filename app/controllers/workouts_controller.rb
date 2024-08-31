@@ -19,23 +19,28 @@ class WorkoutsController < ApplicationController
 
   def submit_feedback
     @workout = current_user.workouts.find_or_initialize_by(date: Date.today)
-    @workout.completed = params[:completed]
+    @workout.completed = params[:completed] == 'true'  # パラメータを真偽値に変換
 
     if @workout.save
-      redirect_to show_video_workouts_path, notice: 'フィードバックが送信されました。'
+      if @workout.completed
+        redirect_to workout_completed_workouts_path, notice: 'フィードバックが送信されました。'
+      else
+        redirect_to workout_not_completed_workouts_path, notice: 'フィードバックが送信されました。'
+      end
     else
       flash.now[:alert] = "フィードバックの送信に失敗しました。"
       render :feedback
     end
+  end  
+
+  def workout_completed
+    @video_url = "https://www.youtube.com/embed/Wiho_VPbhZU?list=PL6lqpAyR_3TpQGzHLe4i8-ats_yL6ZlqW
+"
+    render :workout_completed
   end
 
-  def show_video
-    @workout = current_user.workouts.find_by(date: Date.today)
-
-    if @workout&.completed
-      @video_url = "path_to_funny_video_for_workout_completed.mp4"
-    else
-      @video_url = "https://www.youtube.com/embed/QuqnzCtz3aw"
-    end
-  end
+  def workout_not_completed
+    @video_url = "https://www.youtube.com/embed/QuqnzCtz3aw"
+    render :workout_not_completed
+  end  
 end
