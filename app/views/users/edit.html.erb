@@ -1,0 +1,54 @@
+<div class="relative isolate overflow-hidden bg-gray-900">
+  <div class="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
+    <svg>
+      <defs>
+        <pattern id="pattern" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+          <path d="M.5 200V.5H200" fill="none" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" stroke-width="0" fill="url(#pattern)" />
+    </svg>
+  </div>
+  <div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
+    <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
+      <h1 class="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">アカウント情報の編集</h1>
+      <p class="mt-6 text-lg leading-8 text-gray-300">アカウント情報を更新できます。</p>
+      <form class="mt-10 space-y-6" action="<%= user_path(@user) %>" method="post">
+        <%= hidden_field_tag :_method, 'patch' %>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+        <div>
+          <label for="name" class="block text-sm font-medium text-white">名前</label>
+          <div class="mt-1">
+            <input id="name" name="user[name]" type="text" value="<%= @user.name %>" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+          </div>
+        </div>
+        
+        <div>
+          <label for="email" class="block text-sm font-medium text-white">メールアドレス</label>
+          <div class="mt-1">
+            <input id="email" name="user[email]" type="email" value="<%= @user.email %>" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+          </div>
+        </div>
+        
+        <div>
+          <label for="password" class="block text-sm font-medium text-white">パスワード</label>
+          <div class="mt-1">
+            <input id="password" name="user[password]" type="password" autocomplete="new-password" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+          </div>
+        </div>
+        
+        <div>
+          <label for="password_confirmation" class="block text-sm font-medium text-white">パスワード（確認）</label>
+          <div class="mt-1">
+            <input id="password_confirmation" name="user[password_confirmation]" type="password" autocomplete="new-password" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+          </div>
+        </div>
+        
+        <div>
+          <button type="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">更新する</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

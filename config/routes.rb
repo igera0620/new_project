@@ -26,5 +26,7 @@ Rails.application.routes.draw do
       get 'feedback'               # フィードバックページのルート
       post 'submit_feedback'       # フィードバックの送信処理
     end
-  end  
+  end
+
+  resources :users, only: [:show, :edit, :update]
 end
