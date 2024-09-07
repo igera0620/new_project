@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "このメールアドレスはすでに使用されています"
+            password_confirmation:
+              confirmation: "パスワードと確認用パスワードが一致しません"
+  errors:
+    messages:
+      taken: "はすでに使用されています"
+      confirmation: "が一致しません"

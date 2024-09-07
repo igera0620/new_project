@@ -28,5 +28,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:new, :create, :index, :show, :edit, :update, :destroy]
 end

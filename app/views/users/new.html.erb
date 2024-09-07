@@ -13,7 +13,19 @@
     <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
       <h1 class="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">新規アカウント作成</h1>
       <p class="mt-6 text-lg leading-8 text-gray-300">アカウントを作成して筋トレメニューを利用しましょう。</p>
-      <%= form_with model: @user, url: users_path, local: true, class: "mt-10 space-y-6", multipart: true do |form| %>
+      
+      <% if @user.errors.any? %>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4" role="alert">
+          <strong class="font-bold">エラーが発生しました:</strong>
+          <ul class="mt-2 list-disc list-inside">
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
+      <%= form_with model: @user, url: users_path, local: true, data: { turbo: false }, class: "mt-10 space-y-6", multipart: true do |form| %>
         <div>
           <%= form.label :name, '名前', class: 'block text-sm font-medium text-white' %>
           <div class="mt-1">
