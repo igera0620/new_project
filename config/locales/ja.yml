@@ -6,9 +6,12 @@ ja:
           attributes:
             email:
               taken: "このメールアドレスはすでに使用されています"
+            password:
+              too_short: "パスワードは%{count}文字以上で入力してください"
+              confirmation: "パスワードと確認用パスワードが一致しません"
             password_confirmation:
               confirmation: "パスワードと確認用パスワードが一致しません"
   errors:
     messages:
-      taken: "はすでに使用されています"
+      too_short: "は%{count}文字以上で入力してください"
       confirmation: "が一致しません"
