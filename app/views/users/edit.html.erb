@@ -13,42 +13,53 @@
     <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
       <h1 class="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">アカウント情報の編集</h1>
       <p class="mt-6 text-lg leading-8 text-gray-300">アカウント情報を更新できます。</p>
-      <form class="mt-10 space-y-6" action="<%= user_path(@user) %>" method="post">
-        <%= hidden_field_tag :_method, 'patch' %>
+      <%= form_with model: @user, url: user_path(@user), local: true, html: { multipart: true }, class: "mt-10 space-y-6" do |form| %>
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
         <div>
-          <label for="name" class="block text-sm font-medium text-white">名前</label>
+          <%= form.label :name, '名前', class: 'block text-sm font-medium text-white' %>
           <div class="mt-1">
-            <input id="name" name="user[name]" type="text" value="<%= @user.name %>" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            <%= form.text_field :name, required: true, class: 'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
           </div>
         </div>
         
         <div>
-          <label for="email" class="block text-sm font-medium text-white">メールアドレス</label>
+          <%= form.label :email, 'メールアドレス', class: 'block text-sm font-medium text-white' %>
           <div class="mt-1">
-            <input id="email" name="user[email]" type="email" value="<%= @user.email %>" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            <%= form.email_field :email, required: true, class: 'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
           </div>
         </div>
         
         <div>
-          <label for="password" class="block text-sm font-medium text-white">パスワード</label>
+          <%= form.label :password, 'パスワード', class: 'block text-sm font-medium text-white' %>
           <div class="mt-1">
-            <input id="password" name="user[password]" type="password" autocomplete="new-password" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            <%= form.password_field :password, autocomplete: "new-password", class: 'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
           </div>
         </div>
         
         <div>
-          <label for="password_confirmation" class="block text-sm font-medium text-white">パスワード（確認）</label>
+          <%= form.label :password_confirmation, 'パスワード（確認）', class: 'block text-sm font-medium text-white' %>
           <div class="mt-1">
-            <input id="password_confirmation" name="user[password_confirmation]" type="password" autocomplete="new-password" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            <%= form.password_field :password_confirmation, autocomplete: "new-password", class: 'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
           </div>
+        </div>
+
+        <div>
+          <%= form.label :avatar, 'プロフィール画像', class: 'block text-sm font-medium text-white' %>
+          <div class="mt-1">
+            <%= form.file_field :avatar, class: 'block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-500' %>
+          </div>
+          <% if @user.avatar.present? && @user.avatar.attached? %>
+            <div class="mt-4">
+              <%= image_tag @user.avatar, class: 'h-20 w-20 rounded-full' %>
+            </div>
+          <% end %>
         </div>
         
         <div>
-          <button type="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">更新する</button>
+          <%= form.submit '更新する', class: 'flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' %>
         </div>
-      </form>
+      <% end %>
     </div>
   </div>
 </div>
