@@ -13,7 +13,7 @@
     <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
       <h1 class="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">ログイン</h1>
       <p class="mt-6 text-lg leading-8 text-gray-300">ログインして筋トレメニューを利用しましょう。</p>
-      <%= form_with model: @user, url: login_path, local: true, class: "mt-10 space-y-6" do |form| %>
+      <%= form_with model: @user, url: login_path, local: true, data: { turbo: false }, class: "mt-10 space-y-6" do |form| %>
         <div>
           <%= form.label :email, 'メールアドレス', class: 'block text-sm font-medium text-white' %>
           <div class="mt-1">

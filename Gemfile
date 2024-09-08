@@ -82,3 +82,7 @@ gem 'sorcery'
 gem "ruby-openai"
 
 gem 'dotenv-rails', groups: [:development, :test, :production]
+
+gem 'image_processing', '~> 1.2'
+
+gem 'mini_magick'
