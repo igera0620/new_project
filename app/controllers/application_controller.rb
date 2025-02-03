@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :require_login
+  include Sorcery::Controller
+  before_action :require_login, except: [:index, :show, :oauth, :callback]
 
   private
 

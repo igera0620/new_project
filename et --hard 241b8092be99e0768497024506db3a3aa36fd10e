@@ -1,0 +1,114 @@
+[33mcommit b1f42a1400a3234fb860706acc9e2f24ecdf55ec[m[33m ([m[1;36mHEAD -> [m[1;32mnew-feature-branch[m[33m, [m[1;31morigin/new-feature-branch[m[33m)[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sat Feb 1 19:11:41 2025 +0900
+
+    sorcery.rbの記述の変更
+
+[33mcommit 4b85eadd8d221396eafc24fac2c096fdf5c67cbe[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sat Feb 1 19:11:06 2025 +0900
+
+    sorcery.rbの
+    git commit -m sorcery.rbの
+
+[33mcommit 158ab33a03925e127e9d91b82f32cf064d6cbd08[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sat Feb 1 18:31:59 2025 +0900
+
+    認証が上手くいかないところ
+
+[33mcommit 69f2b40fb5614dfeafa207cda3150810d8a4f827[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Fri Jan 31 23:25:54 2025 +0900
+
+    callbackエラー解消
+
+[33mcommit 241b8092be99e0768497024506db3a3aa36fd10e[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sun Sep 8 17:56:47 2024 +0900
+
+    Readmeの反映
+
+[33mcommit ef68726d13a5e4d198768aa50c4f5dd62da3eec6[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sat Sep 7 17:15:06 2024 +0900
+
+    jaファイルの修正
+
+[33mcommit 61caa71470fcd4f7355e37e83090e11d865c98ef[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sat Sep 7 15:50:33 2024 +0900
+
+    アイコンをクリックした際に、アイコンに文字が被って見栄えが悪かったので修正
+
+[33mcommit 76950bb0f42de3ee65863a5859aaf063acff3393[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sat Sep 7 15:43:49 2024 +0900
+
+    モバイル版のhomeボタンとログインボタンを削除
+
+[33mcommit 1c5d317ba4691b84ef37452894f7ca51f9fd7796[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sat Sep 7 15:24:04 2024 +0900
+
+    フラッシュメッセージの表示に失敗しているもの、フィールドにユーザーが値を入力していなかった際にメッセージの表示、i18nの追加
+
+[33mcommit 93cb6785799a834ab5591278a88d99da8f3c8121[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sat Sep 7 11:53:24 2024 +0900
+
+    アバター画像の反映に成功
+
+[33mcommit c76415e20d291a8081bc67a9677570eba09247cf[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sat Aug 31 15:52:23 2024 +0900
+
+    アカウント設定画面と詳細画面の設定が終了
+
+[33mcommit a0c040144197f5f6fe36e8d7be688acb77229bec[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sat Aug 31 14:51:53 2024 +0900
+
+    ユーザーが筋トレを行ったか行っていないかで表示されるページを分けた。
+
+[33mcommit f8af10fec1431bef23f732618d531b15e7ad786a[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sat Aug 31 13:56:24 2024 +0900
+
+    database.ymlのproductionの変更
+
+[33mcommit f5b038e1424c9ef96ec2f9a7c0c6cfeea947bc93[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Sat Aug 31 13:37:43 2024 +0900
+
+    環境変数(db)の設定
+
+[33mcommit 98e1c9177037b724baf59a4f45e3dcff529d685d[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Mon Aug 26 23:04:52 2024 +0900
+
+    mastar.key
+
+[33mcommit 54d1939462d76c3edbf5da5a1dfa266c80b51388[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Mon Aug 26 22:49:12 2024 +0900
+
+    cssが読み込まれなくなったので変更を破棄
+
+[33mcommit ddad3a482bddde424eebae0e6322e856c8867144[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Mon Aug 26 22:45:36 2024 +0900
+
+    credentialsの変更
+
+[33mcommit 949c91269d1f2e5b9aeb1c398165bf4001584fbe[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Mon Aug 26 20:18:51 2024 +0900
+
+    新しい機能を追加
+
+[33mcommit b023ab3b688dabd43cdaee4cff90dee341816ad3[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: Kazuki Ikehara <bsb_k_1003@ezweb.ne.jp>
+Date:   Mon Aug 26 20:15:25 2024 +0900
+
+    Initial commit

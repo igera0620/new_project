@@ -9,4 +9,7 @@ class User < ApplicationRecord
   has_many :workouts
 
   has_one_attached :avatar
+
+  has_many :authentications, :dependent => :destroy
+  accepts_nested_attributes_for :authentications
 end

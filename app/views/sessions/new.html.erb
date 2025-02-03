@@ -39,6 +39,19 @@
           <%= form.submit 'ログイン', class: 'flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' %>
         </div>
       <% end %>
+
+      <div class="mt-6">
+        <%= link_to auth_at_provider_path(provider: :google), class: "flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-900 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" do %>
+          <svg class="mr-2 h-5 w-5 text-red-500" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.3 0 6.3 1.2 8.6 3.2l6.4-6.4C34.4 2 29.4 0 24 0 14.6 0 6.6 5.4 2.5 13.3l7.5 5.8C12.2 12.1 17.6 9.5 24 9.5z"/>
+            <path fill="#34A853" d="M46.1 24.5c0-1.4-.1-2.8-.3-4.1H24v8.1h12.6c-.6 3.2-2.5 5.8-5.2 7.6l7.5 5.8c4.4-4 7.2-9.8 7.2-16.4z"/>
+            <path fill="#FBBC05" d="M10.3 28.5c-1.1-3.2-1.1-6.8 0-10l-7.5-5.8C-.3 16.2-.3 23.8 2.8 30.3l7.5-5.8z"/>
+            <path fill="#4285F4" d="M24 48c6.4 0 12-2.1 16.3-5.6l-7.5-5.8c-2.3 1.5-5.2 2.4-8.3 2.4-6.4 0-11.8-4-13.7-9.5l-7.5 5.8C7.8 42.6 15.2 48 24 48z"/>
+          </svg>
+          Googleでログイン
+        <% end %>
+      </div>
+
       <p class="mt-6 text-center text-sm text-gray-300">
         アカウントをお持ちでないですか？
         <%= link_to '新規アカウントを作成', new_user_registration_path, class: 'font-medium text-indigo-600 hover:text-indigo-500' %>

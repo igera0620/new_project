@@ -1,0 +1,7 @@
+development: 
+  sorcery: 
+    google_callback_url: "http://localhost:3000/oauth/callback?provider=google"
+
+production: 
+  sorcery: 
+    google_callback_url: "https://new-project-1-vkar.onrender.com/oauth/callback?provider=google"
