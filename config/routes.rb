@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  get 'password_resets/create'
+  get 'password_resets/edit'
+  get 'password_resets/update'
   post "oauth/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback" 
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
@@ -32,4 +36,10 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+
+  resources :password_resets, only: [:new, :create, :edit, :update]
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

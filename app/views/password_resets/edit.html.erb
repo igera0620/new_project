@@ -1,0 +1,73 @@
+<div class="relative isolate overflow-hidden bg-gray-900">
+  <div class="absolute inset-0 -z-10 h-full w-full stroke-white/10 
+              [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" 
+        aria-hidden="true">
+    <svg>
+      <defs>
+        <pattern id="pattern" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+          <path d="M.5 200V.5H200" fill="none" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" stroke-width="0" fill="url(#pattern)" />
+    </svg>
+  </div>
+  
+  <div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
+    <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
+      <h1 class="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+        パスワード再設定
+      </h1>
+      <p class="mt-6 text-lg leading-8 text-gray-300">
+        新しいパスワードを入力してください。
+      </p>
+
+      <%= form_with model: @user, url: password_reset_path(@user.reset_password_token), local: true, class: "mt-10 space-y-6" do |f| %>
+        <%= render 'shared/error_message', object: f.object %>
+
+        <div>
+          <%= f.label :email, 'メールアドレス', class: 'block text-sm font-medium text-white' %>
+          <div class="mt-1">
+            <%= f.email_field :email, value: @user.email, readonly: true, 
+              class: 'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 
+                    placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none 
+                    focus:ring-indigo-500 sm:text-sm bg-gray-800 text-white' %>
+            <%= f.hidden_field :email, value: @user.email %>
+          </div>
+        </div>
+
+        <div>
+          <%= f.label :password, '新しいパスワード', class: 'block text-sm font-medium text-white' %>
+          <div class="mt-1">
+            <%= f.password_field :password, required: true, autocomplete: "new-password",
+              class: 'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 
+                    placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none 
+                    focus:ring-indigo-500 sm:text-sm bg-gray-800 text-white' %>
+          </div>
+        </div>
+
+        <div>
+          <%= f.label :password_confirmation, 'パスワード（確認用）', class: 'block text-sm font-medium text-white' %>
+          <div class="mt-1">
+            <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password",
+              class: 'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 
+                    placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none 
+                    focus:ring-indigo-500 sm:text-sm bg-gray-800 text-white' %>
+          </div>
+        </div>
+
+        <div>
+          <%= f.submit 'パスワードをリセット', 
+            class: 'flex w-full justify-center rounded-md border border-transparent bg-indigo-600 
+                  py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 
+                  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' %>
+        </div>
+      <% end %>
+
+      <p class="mt-6 text-center text-sm text-gray-300">
+        ログインページに戻る
+        <%= link_to 'こちら', login_path, 
+          class: 'font-medium text-indigo-600 hover:text-indigo-500' %>
+      </p>
+    </div>
+  </div>
+</div>
