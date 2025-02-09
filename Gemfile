@@ -86,7 +86,10 @@ gem 'dotenv-rails', groups: [:development, :test, :production]
 
 gem 'image_processing', '~> 1.2'
 
+gem 'carrierwave'
+gem 'fog-aws'
 gem 'mini_magick'
+gem 'meta-tags'
 
 gem 'config'
 
