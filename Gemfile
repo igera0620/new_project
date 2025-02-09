@@ -88,3 +88,9 @@ gem 'image_processing', '~> 1.2'
 gem 'mini_magick'
 
 gem 'config'
+
+gem 'omniauth-auth0'
+gem 'omniauth-line'
+gem 'omniauth-rails_csrf_protection'
+
+gem 'devise'
