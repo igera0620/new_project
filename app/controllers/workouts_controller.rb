@@ -7,7 +7,7 @@ class WorkoutsController < ApplicationController
     chatgpt_service = ChatGptService.new
     body_part = params[:body_part]
     prompt = "ユーザーは#{body_part}を重点的に鍛えたいです。おすすめのトレーニングメニューを提案してください。"
-    @custom_menu = chatgpt_service.chat(prompt)
+    @custom_menu = chatgpt_service.chat(prompt, current_user)
 
     render :show_menu
   end

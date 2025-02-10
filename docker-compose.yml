@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 services:
   db:
     image: postgres
@@ -8,6 +8,15 @@ services:
     volumes:
       - postgres_volume:/var/lib/postgresql/data
     restart: always
+
+  redis:  # 👈 Redis サービスを追加
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"  # 👈 ホストとコンテナのポートをマッピング
+    command: redis-server --appendonly yes  # 👈 永続化オプション（オプション）
+
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && rails s -b 'ssl://0.0.0.0:3000?key=config/certs/localhost-key.pem&cert=config/certs/localhost.pem' && bin/dev"
@@ -16,6 +25,7 @@ services:
       POSTGRES_PASSWORD: password
       SSL_CERT_FILE: /myapp/config/certs/localhost.pem
       SSL_KEY_FILE: /myapp/config/certs/localhost-key.pem
+      REDIS_URL: redis://redis:6379/1 
     volumes:
       - .:/myapp
     ports:
@@ -25,5 +35,6 @@ services:
     stdin_open: true
     depends_on:
       - db
+      - redis
 volumes:
   postgres_volume:

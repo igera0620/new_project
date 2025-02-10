@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chat_gpt/ask'
 
   get 'password_resets/create'
   get 'password_resets/edit'
@@ -42,4 +43,7 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
+
+  post '/chatgpt/ask', to: 'chat_gpt#ask'
+
 end

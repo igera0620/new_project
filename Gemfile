@@ -98,3 +98,5 @@ gem 'omniauth-line'
 gem 'omniauth-rails_csrf_protection'
 
 gem 'devise'
+
+gem 'redis'
