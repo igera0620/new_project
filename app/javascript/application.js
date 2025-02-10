@@ -3,6 +3,7 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import "tailwindcss/tailwind.css";
 import $ from 'jquery';
+import "./chatgpt"; 
 
 function initialize() {
   const header = document.getElementById('main-header');

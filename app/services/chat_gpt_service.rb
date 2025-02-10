@@ -21,6 +21,12 @@ class ChatGptService
     end
   end
 
+  def self.remaining_requests(user)
+    key = "chatgpt_usage:#{user.id}"
+    count = REDIS.get(key).to_i
+    LIMIT_COUNT - count
+  end
+
   def chat(prompt, user)
     return "1日の使用回数を超えました" unless self.class.allowed?(user)
     
