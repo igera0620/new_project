@@ -34,8 +34,7 @@ class WorkoutsController < ApplicationController
   end  
 
   def workout_completed
-    @video_url = "https://www.youtube.com/embed/Wiho_VPbhZU?list=PL6lqpAyR_3TpQGzHLe4i8-ats_yL6ZlqW
-"
+    @video_url = "https://www.youtube.com/embed/Wiho_VPbhZU?list=PL6lqpAyR_3TpQGzHLe4i8-ats_yL6ZlqW"
     render :workout_completed
   end
 

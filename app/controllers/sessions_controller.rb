@@ -2,9 +2,10 @@ class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
 
   def create
-    email = params[:user][:email]
-    password = params[:user][:password]
-    remember_me = params[:user][:remember_me]
+    user_params = params[:user] || {}
+    email = user_params[:email]
+    password = user_params[:password]
+    remember_me = user_params[:remember_me]
 
     @user = login(email, password, remember_me)
 
