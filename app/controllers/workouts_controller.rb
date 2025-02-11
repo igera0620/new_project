@@ -1,7 +1,12 @@
 class WorkoutsController < ApplicationController
   def index
-    # 必要ならここに処理を追加
-  end
+    @workouts = Workout.all
+  
+    respond_to do |format|
+      format.html { render :index }  # ここを明示的にHTMLをレンダリングするように修正
+      format.json { render json: @workouts, only: [:id, :title, :description, :start_time, :end_time] }
+    end
+  end  
 
   def generate_menu
     chatgpt_service = ChatGptService.new

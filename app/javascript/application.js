@@ -4,6 +4,9 @@ import "./controllers"
 import "tailwindcss/tailwind.css";
 import $ from 'jquery';
 import "./chatgpt"; 
+import './calendar';
+import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 function initialize() {
   const header = document.getElementById('main-header');

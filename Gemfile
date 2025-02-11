@@ -100,3 +100,7 @@ gem 'omniauth-rails_csrf_protection'
 gem 'devise'
 
 gem 'redis'
+
+gem 'jquery-rails'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
