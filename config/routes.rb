@@ -47,4 +47,5 @@ Rails.application.routes.draw do
   post '/chatgpt/ask', to: 'chat_gpt#ask'
   get '/chatgpt/remaining_requests', to: 'chat_gpt#remaining_requests'
   
+  get 'calendars', to: 'calendars#index', as: 'calendars'
 end
