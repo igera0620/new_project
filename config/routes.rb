@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       get 'workout_not_completed'  # ワークアウト未完了時のページ
       get 'feedback'               # フィードバックページのルート
       post 'submit_feedback'       # フィードバックの送信
+      get 'show_menu'
     end
   end
 
