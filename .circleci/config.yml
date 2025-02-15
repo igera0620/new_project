@@ -3,7 +3,7 @@ version: 2.1
 executors:
   default:
     docker:
-      - image: circleci/ruby:3.2  # Rubyのバージョンに合わせる
+      - image: cimg/ruby:3.2
     working_directory: ~/app
 
 jobs:
