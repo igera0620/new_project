@@ -32,11 +32,24 @@ jobs:
           paths:
             - vendor/bundle
 
+  wait_for_db_start_up:
+    steps:
+      - run:
+          name: Wait for database to start
+          command: |
+            for i in {1..30}; do
+              nc -z db 5432 && echo "PostgreSQL is up" && exit 0
+              echo "Waiting for PostgreSQL..."
+              sleep 1
+            done
+            echo "PostgreSQL did not start in time" && exit 1
+
   rubocop:
     executor: default
     docker:
       - image: cimg/ruby:3.2.2
       - image: cimg/postgres:15.1
+        name: db
         environment:
           POSTGRES_DB: test_db
           POSTGRES_USER: root
@@ -45,6 +58,7 @@ jobs:
       - checkout
       - restore_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
+      - wait_for_db_start_up  # DB 起動を待つ
       - run:
           name: Ensure bin is in PATH
           command: echo 'export PATH="vendor/bundle/bin:$PATH"' >> $BASH_ENV
@@ -57,24 +71,25 @@ jobs:
     docker:
       - image: cimg/ruby:3.2.2
       - image: cimg/postgres:15.1
+        name: db
         environment:
           POSTGRES_DB: test_db
           POSTGRES_USER: root
           POSTGRES_PASSWORD: root
     environment:
-      OPENAI_ACCESS_TOKEN: $OPENAI_ACCESS_TOKEN  # ここにも追加！
+      OPENAI_ACCESS_TOKEN: $OPENAI_ACCESS_TOKEN  # ここにも追加
     steps:
       - checkout
       - restore_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
+      - wait_for_db_start_up  # DB 起動を待つ
       - run:
           name: Ensure bin is in PATH
           command: echo 'export PATH="vendor/bundle/bin:$PATH"' >> $BASH_ENV
       - run:
           name: Set up database
           command: |
-            bin/rails db:create
-            bin/rails db:migrate
+            bin/rails db:prepare  # `db:create` → `db:prepare` に変更
       - run:
           name: Run RSpec
           command: bundle exec rspec
