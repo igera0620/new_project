@@ -61,6 +61,11 @@ group :development do
   gem "web-console"
   gem 'sqlite3', '~> 1.4'
   gem 'letter_opener_web', '~> 2.0'
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'overcommit'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
