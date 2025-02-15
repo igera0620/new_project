@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .loading-overlay {
+    @apply fixed inset-0 flex items-center justify-center bg-black/80 text-white text-lg font-semibold z-50 hidden;
+  }
+
+  .loading-spinner {
+    @apply w-10 h-10 border-4 border-gray-300 border-t-white rounded-full animate-spin;
+  }
+}
