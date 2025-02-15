@@ -28,6 +28,13 @@ jobs:
 
   rubocop:
     executor: default
+    docker:
+      - image: cimg/ruby:3.2.2  # ここを修正！（非推奨の circleci/ruby を変更）
+      - image: circleci/postgres:15
+        environment:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: root
     steps:
       - checkout
       - restore_cache:
@@ -39,7 +46,7 @@ jobs:
   rspec:
     executor: default
     docker:
-      - image: circleci/ruby:3.2
+      - image: circleci/ruby:3.2.2
       - image: circleci/postgres:15  # PostgreSQLを使うなら
         environment:
           POSTGRES_DB: test_db
