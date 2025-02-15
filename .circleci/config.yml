@@ -72,6 +72,13 @@ jobs:
           name: Ensure bin is in PATH
           command: echo 'export PATH="vendor/bundle/bin:$PATH"' >> $BASH_ENV
       - run:
+          name: Wait for PostgreSQL
+          command: |
+            for i in {1..10}; do
+              nc -z db 5432 && echo "PostgreSQL is up" && break
+              echo "Waiting for PostgreSQL..." && sleep 3
+            done
+      - run:
           name: Set up database
           command: |
             bin/rails db:create
