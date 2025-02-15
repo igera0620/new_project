@@ -6,8 +6,8 @@ executors:
       - image: cimg/ruby:3.2.2  # Rubyの正しいイメージ
     working_directory: ~/app
     environment:
-      BUNDLE_PATH: vendor/bundle  # バンドルのパス
-      OPENAI_ACCESS_TOKEN: $OPENAI_ACCESS_TOKEN  # CircleCIで設定
+      BUNDLE_PATH: vendor/bundle
+      OPENAI_ACCESS_TOKEN: $OPENAI_ACCESS_TOKEN
 
 jobs:
   checkout_code:
@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            mkdir -p vendor/bundle  # 手動でディレクトリ作成
+            mkdir -p vendor/bundle
             bundle config set --local path 'vendor/bundle'
             bundle install --jobs=4 --retry=3
       - save_cache:
@@ -32,24 +32,11 @@ jobs:
           paths:
             - vendor/bundle
 
-  wait_for_db_start_up:
-    steps:
-      - run:
-          name: Wait for database to start
-          command: |
-            for i in {1..30}; do
-              nc -z db 5432 && echo "PostgreSQL is up" && exit 0
-              echo "Waiting for PostgreSQL..."
-              sleep 1
-            done
-            echo "PostgreSQL did not start in time" && exit 1
-
   rubocop:
     executor: default
     docker:
       - image: cimg/ruby:3.2.2
       - image: cimg/postgres:15.1
-        name: db
         environment:
           POSTGRES_DB: test_db
           POSTGRES_USER: root
@@ -58,7 +45,6 @@ jobs:
       - checkout
       - restore_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
-      - wait_for_db_start_up  # DB 起動を待つ
       - run:
           name: Ensure bin is in PATH
           command: echo 'export PATH="vendor/bundle/bin:$PATH"' >> $BASH_ENV
@@ -77,19 +63,19 @@ jobs:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: root
     environment:
-      OPENAI_ACCESS_TOKEN: $OPENAI_ACCESS_TOKEN  # ここにも追加
+      OPENAI_ACCESS_TOKEN: $OPENAI_ACCESS_TOKEN
     steps:
       - checkout
       - restore_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
-      - wait_for_db_start_up  # DB 起動を待つ
       - run:
           name: Ensure bin is in PATH
           command: echo 'export PATH="vendor/bundle/bin:$PATH"' >> $BASH_ENV
       - run:
           name: Set up database
           command: |
-            bin/rails db:prepare  # `db:create` → `db:prepare` に変更
+            bin/rails db:create
+            bin/rails db:migrate
       - run:
           name: Run RSpec
           command: bundle exec rspec
