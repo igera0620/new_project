@@ -51,12 +51,12 @@ function loadCalendar() {
     eventClick: function (info) {
       let event = info.event;
       console.log("✅ 削除するイベントID:", event.id);
-
+    
       if (confirm(`🗑️ "${event.title}" を削除しますか？`)) {
         console.log("🚀 削除リクエスト送信: /workouts/" + event.id);
-
+    
         info.el.style.pointerEvents = "none";
-
+    
         fetch(`/workouts/${event.id}`, {
           method: 'DELETE',
           headers: {
@@ -64,26 +64,37 @@ function loadCalendar() {
             'Content-Type': 'application/json'
           }
         })
-          .then(response => response.json())
-          .then(data => {
-            console.log("✅ 削除成功:", data);
-            alert(data.message);
-
-            // 🔽 カレンダーからイベントを削除
-            let removedEvent = calendar.getEventById(event.id);
-            if (removedEvent) {
-              console.log("✅ カレンダーから削除:", event.id);
-              removedEvent.remove();
-            }
-            
-          })
-          .catch(error => {
-            console.error('❌ エラー:', error);
-            alert("削除に失敗しました");
+        .then(response => {
+          if (!response.ok) {
+            // ❌ HTTPエラーが発生した場合、エラーメッセージを投げる
+            return response.json().then(errData => {
+              throw new Error(errData.message || `HTTP ${response.status}`);
+            }).catch(() => {
+              throw new Error(`HTTP ${response.status}`);
+            });
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log("✅ 削除成功:", data);
+          alert(data.message);
     
-            // 🔽 失敗時にボタンの無効化を解除
-            info.el.style.pointerEvents = "auto";
-          });
+          // 🔽 カレンダーからイベントを削除
+          let removedEvent = calendar.getEventById(event.id);
+          if (removedEvent) {
+            console.log("✅ カレンダーから削除:", event.id);
+            removedEvent.remove();
+          }
+    
+          calendar.refetchEvents(); // 🔽 カレンダーのイベントを再読み込み
+        })
+        .catch(error => {
+          console.error('❌ 削除エラー:', error.message || error);
+          alert(`削除に失敗しました: ${error.message || "不明なエラー"}`);
+    
+          // 🔽 失敗時にボタンの無効化を解除
+          info.el.style.pointerEvents = "auto";
+        });
       }
     }
   });
