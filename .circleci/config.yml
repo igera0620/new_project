@@ -5,6 +5,8 @@ executors:
     docker:
       - image: cimg/ruby:3.2.2  # Rubyの正しいイメージ
     working_directory: ~/app
+    environment:
+      BUNDLE_PATH: vendor/bundle  # 追加
 
 jobs:
   checkout_code:
@@ -21,6 +23,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            mkdir -p vendor/bundle  # 手動でディレクトリ作成
             bundle config set --local path 'vendor/bundle'
             bundle install --jobs=4 --retry=3
       - save_cache:
@@ -42,6 +45,9 @@ jobs:
       - restore_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
       - run:
+          name: Ensure bin is in PATH
+          command: echo 'export PATH="vendor/bundle/bin:$PATH"' >> $BASH_ENV
+      - run:
           name: Run RuboCop
           command: bundle exec rubocop
 
@@ -58,6 +64,9 @@ jobs:
       - checkout
       - restore_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Ensure bin is in PATH
+          command: echo 'export PATH="vendor/bundle/bin:$PATH"' >> $BASH_ENV
       - run:
           name: Set up database
           command: |
