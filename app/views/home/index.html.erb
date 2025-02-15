@@ -5,36 +5,36 @@
     </div>
   </div>
 
-  <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-20 text-center">
-    <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">💪 筋肉は全てを解決する 💪</h2>
-    <p class="mt-6 text-lg leading-8 text-gray-300">AIにメニューを組んでもらおう！</p>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-20 text-center">
+    <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">💪 筋肉は全てを解決する 💪</h2>
+    <p class="mt-4 sm:mt-6 text-lg sm:text-xl leading-7 sm:leading-8 text-gray-300">AIにメニューを組んでもらおう！</p>
   </div>
 
   <!-- 🏋️‍♂️ 使い方セクション -->
-  <div class="mx-auto mt-16 max-w-4xl lg:mx-0 lg:max-w-none text-center">
-    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">🏋️‍♂️ 使い方の説明 🏋️‍♀️</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-      <div class="bg-white/10 p-6 rounded-xl ring-1 ring-white/10">
+  <div class="mx-auto mt-12 sm:mt-16 max-w-4xl lg:mx-0 lg:max-w-none text-center">
+    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">🏋️‍♂️ 使い方の説明 🏋️‍♀️</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
+      <div class="bg-white/10 p-4 sm:p-6 rounded-xl ring-1 ring-white/10">
         <h4 class="font-semibold text-white">1. ユーザー登録 & ログイン</h4>
-        <p class="mt-2 text-gray-300">Google認証を使えばすぐにログイン可能！</p>
+        <p class="mt-2 text-gray-300 text-sm sm:text-base">Google認証を使えばすぐにログイン可能！</p>
       </div>
-      <div class="bg-white/10 p-6 rounded-xl ring-1 ring-white/10">
+      <div class="bg-white/10 p-4 sm:p-6 rounded-xl ring-1 ring-white/10">
         <h4 class="font-semibold text-white">2. 筋トレメニューの提案</h4>
-        <p class="mt-2 text-gray-300">「ジム」「家」の選択とレベル設定で最適なメニューを提案！</p>
+        <p class="mt-2 text-gray-300 text-sm sm:text-base">「ジム」「家」の選択とレベル設定で最適なメニューを提案！</p>
       </div>
-      <div class="bg-white/10 p-6 rounded-xl ring-1 ring-white/10">
+      <div class="bg-white/10 p-4 sm:p-6 rounded-xl ring-1 ring-white/10">
         <h4 class="font-semibold text-white">3. 筋トレを実施</h4>
-        <p class="mt-2 text-gray-300">提案されたメニューでトレーニングし、完了したら「やった！」ボタンを押そう！</p>
+        <p class="mt-2 text-gray-300 text-sm sm:text-base">提案されたメニューでトレーニングし、「やった！」ボタンを押そう！</p>
       </div>
-      <div class="bg-white/10 p-6 rounded-xl ring-1 ring-white/10">
+      <div class="bg-white/10 p-4 sm:p-6 rounded-xl ring-1 ring-white/10">
         <h4 class="font-semibold text-white">4. フィードバック</h4>
-        <p class="mt-2 text-gray-300">「やった！」ならごほうび動画、「サボった…」なら喝が入る動画を表示！</p>
+        <p class="mt-2 text-gray-300 text-sm sm:text-base">「やった！」ならごほうび動画、「サボった…」なら喝が入る動画を表示！</p>
       </div>
     </div>
   </div>
 
   <!-- 📅 ナビゲーションメニュー -->
-  <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
+  <div class="mx-auto mt-12 sm:mt-16 grid max-w-xl sm:max-w-2xl lg:max-w-none grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
     <%= render "shared/home_link", path: workouts_path, title: "メニューを組みたい方はこちら", description: "条件を提示して、自分の環境、レベルに適したメニューを組んでもらおう！", icon_class: "text-indigo-400" %>
 
     <%= render "shared/home_link", path: calendars_path, title: "カレンダーを見る", description: "AIが組んだ筋トレ予定をカレンダーで確認しよう！", icon_class: "text-red-400" %>
