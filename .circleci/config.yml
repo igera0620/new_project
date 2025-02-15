@@ -6,7 +6,8 @@ executors:
       - image: cimg/ruby:3.2.2  # Rubyの正しいイメージ
     working_directory: ~/app
     environment:
-      BUNDLE_PATH: vendor/bundle  # 追加
+      BUNDLE_PATH: vendor/bundle  # バンドルのパス
+      OPENAI_ACCESS_TOKEN: $OPENAI_ACCESS_TOKEN  # CircleCIで設定
 
 jobs:
   checkout_code:
@@ -34,8 +35,8 @@ jobs:
   rubocop:
     executor: default
     docker:
-      - image: cimg/ruby:3.2.2  # 修正（circleci/ruby -> cimg/ruby）
-      - image: cimg/postgres:15.1  # 修正（circleci/postgres -> cimg/postgres）
+      - image: cimg/ruby:3.2.2
+      - image: cimg/postgres:15.1
         environment:
           POSTGRES_DB: test_db
           POSTGRES_USER: root
@@ -54,12 +55,14 @@ jobs:
   rspec:
     executor: default
     docker:
-      - image: cimg/ruby:3.2.2  # 修正（circleci/ruby -> cimg/ruby）
-      - image: cimg/postgres:15.1  # 修正（circleci/postgres -> cimg/postgres）
+      - image: cimg/ruby:3.2.2
+      - image: cimg/postgres:15.1
         environment:
           POSTGRES_DB: test_db
           POSTGRES_USER: root
           POSTGRES_PASSWORD: root
+    environment:
+      OPENAI_ACCESS_TOKEN: $OPENAI_ACCESS_TOKEN  # ここにも追加！
     steps:
       - checkout
       - restore_cache:
