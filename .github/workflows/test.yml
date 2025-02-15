@@ -12,6 +12,8 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
           POSTGRES_DB: test_database
+          GITHUB_ACTIONS: true
+          CI: true
         ports:
           - 5432:5432
         options: |
@@ -19,7 +21,7 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-          --network-alias=db  # ← 追加
+          --network-alias=db
 
     steps:
       - name: GitHubリポジトリのコードを取得
@@ -31,7 +33,7 @@ jobs:
           ruby-version: 3.2.2
           bundler-cache: true
 
-      - name: 環境変数の設定
+      - name: 環境変数の設定（OPENAI_ACCESS_TOKEN）
         run: echo "OPENAI_ACCESS_TOKEN=${{ secrets.OPENAI_ACCESS_TOKEN }}" >> $GITHUB_ENV
 
       - name: PostgreSQLの設定
@@ -39,7 +41,7 @@ jobs:
           sudo apt-get -yqq install libpq-dev
           cp config/database.github.yml config/database.yml
 
-      - name: PostgreSQLが起動するまで待機  # ← 追加
+      - name: PostgreSQLが起動するまで待機
         run: |
           for i in {1..10}; do
             pg_isready -h localhost -p 5432 && echo "PostgreSQL is ready!" && exit 0
