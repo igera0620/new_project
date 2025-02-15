@@ -70,7 +70,7 @@ group :development do
   gem "factory_bot_rails"
   gem "faker"
   gem "spring"
-  gem "spring-commands-rspec" 
+  gem "spring-commands-rspec"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

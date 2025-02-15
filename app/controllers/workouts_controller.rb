@@ -58,7 +58,7 @@ class WorkoutsController < ApplicationController
 
   def submit_feedback
     @workout = current_user.workouts.find_or_initialize_by(date: Date.today)
-    @workout.completed = params[:completed] == 'true' ? true : false
+    @workout.completed = params[:completed] == 'true'
 
     if @workout.save
       puts "✅ ワークアウトID: #{@workout.id} の `completed` が #{@workout.completed} に更新されました！"

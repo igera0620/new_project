@@ -14,9 +14,9 @@ ENV['LINE_KEY'] ||= 'dummy_key'
 ENV['LINE_SECRET'] ||= 'dummy_secret'
 
 puts "Sorcery ENV Check:"
-puts "SORCERY_MAILER: #{ENV['SORCERY_MAILER']}"
-puts "LINE_KEY: #{ENV['LINE_KEY']}"
-puts "LINE_SECRET: #{ENV['LINE_SECRET']}"
+puts "SORCERY_MAILER: #{ENV.fetch('SORCERY_MAILER', nil)}"
+puts "LINE_KEY: #{ENV.fetch('LINE_KEY', nil)}"
+puts "LINE_SECRET: #{ENV.fetch('LINE_SECRET', nil)}"
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
