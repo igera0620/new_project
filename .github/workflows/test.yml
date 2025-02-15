@@ -1,0 +1,22 @@
+name: CI
+
+on: [push, pull_request] # pushとプルリク時に自動実行
+
+jobs:
+  rubocop_rspec:
+    runs-on: ubuntu-latest
+    steps:
+      - name: GitHubリポジトリのコードを取得
+        uses: actions/checkout@v3
+
+      - name: Rubyをセットアップ
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1 # プロジェクトのRubyバージョンを指定
+          bundler-cache: true
+
+      - name: RuboCopを実行
+        run: bundle exec rubocop
+
+      - name: RSpecを実行
+        run: bundle exec rspec
