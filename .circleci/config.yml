@@ -3,7 +3,7 @@ version: 2.1
 executors:
   default:
     docker:
-      - image: cimg/ruby:3.2.2
+      - image: cimg/ruby:3.2.2  # Rubyの正しいイメージ
     working_directory: ~/app
 
 jobs:
@@ -20,7 +20,9 @@ jobs:
           key: gems-{{ checksum "Gemfile.lock" }}
       - run:
           name: Install dependencies
-          command: bundle install --path vendor/bundle --jobs=4 --retry=3
+          command: |
+            bundle config set --local path 'vendor/bundle'
+            bundle install --jobs=4 --retry=3
       - save_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
           paths:
@@ -29,8 +31,8 @@ jobs:
   rubocop:
     executor: default
     docker:
-      - image: cimg/ruby:3.2.2  # ここを修正！（非推奨の circleci/ruby を変更）
-      - image: circleci/postgres:15
+      - image: cimg/ruby:3.2.2  # 修正（circleci/ruby -> cimg/ruby）
+      - image: cimg/postgres:15.1  # 修正（circleci/postgres -> cimg/postgres）
         environment:
           POSTGRES_DB: test_db
           POSTGRES_USER: root
@@ -46,8 +48,8 @@ jobs:
   rspec:
     executor: default
     docker:
-      - image: circleci/ruby:3.2.2
-      - image: circleci/postgres:15.1  # PostgreSQLを使うなら
+      - image: cimg/ruby:3.2.2  # 修正（circleci/ruby -> cimg/ruby）
+      - image: cimg/postgres:15.1  # 修正（circleci/postgres -> cimg/postgres）
         environment:
           POSTGRES_DB: test_db
           POSTGRES_USER: root
