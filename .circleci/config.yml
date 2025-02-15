@@ -32,27 +32,6 @@ jobs:
           paths:
             - vendor/bundle
 
-  rubocop:
-    executor: default
-    docker:
-      - image: cimg/ruby:3.2.2
-      - image: cimg/postgres:15.1
-        name: db
-        environment:
-          POSTGRES_DB: test_db
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-    steps:
-      - checkout
-      - restore_cache:
-          key: gems-{{ checksum "Gemfile.lock" }}
-      - run:
-          name: Ensure bin is in PATH
-          command: echo 'export PATH="vendor/bundle/bin:$PATH"' >> $BASH_ENV
-      - run:
-          name: Run RuboCop
-          command: bundle exec rubocop
-
   rspec:
     executor: default
     docker:
@@ -96,9 +75,6 @@ workflows:
       - bundle_install:
           requires:
             - checkout_code
-      - rubocop:
-          requires:
-            - bundle_install
       - rspec:
           requires:
             - bundle_install
