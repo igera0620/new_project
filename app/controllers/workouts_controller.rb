@@ -1,4 +1,6 @@
 class WorkoutsController < ApplicationController
+  before_action :require_login
+  
   def index
     @workouts = current_user.workouts.order(created_at: :desc).limit(1) # `.limit(1)` で配列のまま
     Rails.logger.debug "✅ 取得したワークアウト: #{@workouts.inspect}"  # デバッグログ
