@@ -1,0 +1,74 @@
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: circleci/ruby:3.2  # Rubyのバージョンに合わせる
+    working_directory: ~/app
+
+jobs:
+  checkout_code:
+    executor: default
+    steps:
+      - checkout  # ソースコードを取得
+
+  bundle_install:
+    executor: default
+    steps:
+      - checkout
+      - restore_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Install dependencies
+          command: bundle install --path vendor/bundle --jobs=4 --retry=3
+      - save_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+  rubocop:
+    executor: default
+    steps:
+      - checkout
+      - restore_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Run RuboCop
+          command: bundle exec rubocop
+
+  rspec:
+    executor: default
+    docker:
+      - image: circleci/ruby:3.2
+      - image: circleci/postgres:15  # PostgreSQLを使うなら
+        environment:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: root
+    steps:
+      - checkout
+      - restore_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Set up database
+          command: |
+            bin/rails db:create
+            bin/rails db:migrate
+      - run:
+          name: Run RSpec
+          command: bundle exec rspec
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - checkout_code
+      - bundle_install:
+          requires:
+            - checkout_code
+      - rubocop:
+          requires:
+            - bundle_install
+      - rspec:
+          requires:
+            - bundle_install
