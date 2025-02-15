@@ -23,6 +23,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+      DATABASE_URL: "postgres://postgres:password@db/new_project_test"
       SSL_CERT_FILE: /myapp/config/certs/localhost.pem
       SSL_KEY_FILE: /myapp/config/certs/localhost-key.pem
       REDIS_URL: redis://redis:6379/1 

@@ -1,29 +1,22 @@
+# This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
-require 'config'  # config を読み込む
+ENV['RAILS_ENV'] ||= 'test'
+require_relative '../config/environment'
+# Prevent database truncation if the environment is production
+abort("The Rails environment is running in production mode!") if Rails.env.production?
+# Uncomment the line below in case you have `--require rails_helper` in the `.rspec` file
+# that will avoid rails generators crashing because migrations haven't been run yet
+# return unless Rails.env.test?
+require 'rspec/rails'
 
 ENV['SORCERY_MAILER'] ||= 'dummy_mailer'
 ENV['LINE_KEY'] ||= 'dummy_key'
 ENV['LINE_SECRET'] ||= 'dummy_secret'
-ENV['DATABASE_URL'] ||= 'postgres://postgres:postgres@db/new_project_test'
 
-puts "===== Sorcery ENV Check ====="
-puts "SORCERY_MAILER: #{ENV['SORCERY_MAILER'].inspect}"
-puts "LINE_KEY: #{ENV['LINE_KEY'].inspect}"
-puts "LINE_SECRET: #{ENV['LINE_SECRET'].inspect}"
-puts "DATABASE_URL: #{ENV['DATABASE_URL'].inspect}" # これも確認
-puts "================================"
-
-ENV['RAILS_ENV'] ||= 'test'
-require_relative '../config/environment'
-
-Settings.add_source!({
-  sorcery: {
-    line_callback_url: 'https://localhost:3000/oauth/callback?provider=line'
-  }
-})
-Settings.reload!
-
-require 'rspec/rails'
+puts "Sorcery ENV Check:"
+puts "SORCERY_MAILER: #{ENV['SORCERY_MAILER']}"
+puts "LINE_KEY: #{ENV['LINE_KEY']}"
+puts "LINE_SECRET: #{ENV['LINE_SECRET']}"
 
 # Add additional requires below this line. Rails is not loaded until this point!
 

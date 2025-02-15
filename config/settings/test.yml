@@ -1,0 +1,6 @@
+sorcery:
+  google_callback_url: "https://test.example.com/oauth/callback?provider=google"
+  line_callback_url: "https://test.example.com/oauth/callback?provider=line"
+
+default_url_options:
+  host: "test.example.com"
