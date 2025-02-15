@@ -32,6 +32,16 @@ jobs:
           paths:
             - vendor/bundle
 
+  rubocop:
+    executor: default
+    steps:
+      - checkout
+      - restore_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Run RuboCop
+          command: bundle exec rubocop
+
   rspec:
     executor: default
     docker:
@@ -75,6 +85,9 @@ workflows:
       - bundle_install:
           requires:
             - checkout_code
+      - rubocop:
+          requires:
+            - bundle_install
       - rspec:
           requires:
             - bundle_install
