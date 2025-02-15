@@ -47,7 +47,7 @@ jobs:
     executor: default
     docker:
       - image: circleci/ruby:3.2.2
-      - image: circleci/postgres:15  # PostgreSQLを使うなら
+      - image: circleci/postgres:15.1  # PostgreSQLを使うなら
         environment:
           POSTGRES_DB: test_db
           POSTGRES_USER: root
