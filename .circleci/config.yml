@@ -43,6 +43,7 @@ jobs:
           command: bundle exec rubocop --parallel
       - save_cache:
           key: rubocop-cache-{{ checksum ".rubocop.yml" }}
+          paths:
             - tmp/cache
 
   rspec:
