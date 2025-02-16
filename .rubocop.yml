@@ -6,5 +6,4 @@ AllCops:
     - db/schema.rb
 
 Metrics/BlockLength:
-  Exclude:
-    - db/schema.rb
+  Enabled: false
