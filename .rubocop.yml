@@ -2,27 +2,13 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   NewCops: enable
-  Exclude:
-    - db/schema.rb
 
 Metrics/BlockLength:
   Enabled: false
-
-RSpec/MessageExpectation:
-  Enabled: false
-
-RSpec/MultipleDescribes:
-  Enabled: false
-
-RSpec/MultipleExpectations:
-  Enabled: false
-
-RSpec/NestedGroups:
-  Enabled: false
-
-RSpec/RepeatedExample:
-  Enabled: false
-
-RSpec/ScatteredSetup:
-  Enabled: false
-  
+  Exclude:
+    - config/environments/development.rb
+    - config/environments/production.rb
+    - config/initializers/sorcery.rb
+    - config/routes.rb
+    - db/schema.rb
+    
