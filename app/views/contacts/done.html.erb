@@ -1,0 +1,24 @@
+<div class="relative isolate overflow-hidden bg-gray-900">
+  <div class="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
+    <svg>
+      <defs>
+        <pattern id="pattern" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+          <path d="M.5 200V.5H200" fill="none" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" stroke-width="0" fill="url(#pattern)" />
+    </svg>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-6 pb-24 pt-16 sm:pb-32 lg:flex lg:px-8 lg:py-40">
+    <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8 text-center">
+      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">お問い合わせ完了</h1>
+      <p class="mt-6 text-lg text-gray-300">
+        お問い合わせありがとうございました。内容を確認の上、後ほどご連絡いたします。
+      </p>
+      <div class="mt-10">
+        <%= link_to "ホームに戻る", root_path, class: "rounded-md bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+      </div>
+    </div>
+  </div>
+</div>

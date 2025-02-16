@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>お問い合わせの確認</title>
+</head>
+<body>
+  <p><%= @contact.name %> 様</p>
+  <p>以下の内容でお問い合わせを受け付けました。</p>
+
+    <table style="border-collapse: collapse; width: 100%; max-width: 600px; border: 1px solid #ddd;">
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">お名前</th>
+      <td style="border: 1px solid #ddd; padding: 8px;"><%= @contact.name %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">メールアドレス</th>
+      <td style="border: 1px solid #ddd; padding: 8px;"><%= @contact.email %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">お問い合わせの種類</th>
+      <td style="border: 1px solid #ddd; padding: 8px;"><%= t("contact.subjects.#{@contact.subject}") %></td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">お問い合わせ内容</th>
+      <td style="border: 1px solid #ddd; padding: 8px; white-space: pre-wrap;"><%= @contact.message %></td>
+    </tr>
+  </table>
+
+  <p>内容を確認し、後ほどご返信いたします。</p>
+</body>
+</html>

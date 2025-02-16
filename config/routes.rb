@@ -52,4 +52,9 @@ Rails.application.routes.draw do
 
   get '/terms', to: 'static_pages#terms', as: 'terms'
   get '/privacy', to: 'static_pages#privacy', as: 'privacy'
+
+  resources :contacts, only: [:new, :create]
+  post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+  post 'contacts/back', to: 'contacts#back', as: 'back'
+  get 'done', to: 'contacts#done', as: 'done'
 end

@@ -15,3 +15,9 @@ ja:
     messages:
       too_short: "は%{count}文字以上で入力してください"
       confirmation: "が一致しません"
+  contact:
+    subjects:
+      general: "一般のお問い合わせ"
+      support: "サポート"
+      feedback: "フィードバック"
+      other: "その他"
