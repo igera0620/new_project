@@ -1,5 +1,5 @@
 class ContactMailer < ApplicationMailer
-  default to: ENV['TOMAIL'] # 送信先メールアドレス
+  default to: ENV.fetch('TOMAIL', nil) # 送信先メールアドレス
 
   def send_mail(contact)
     @contact = contact

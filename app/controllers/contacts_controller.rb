@@ -1,15 +1,18 @@
 class ContactsController < ApplicationController
-  skip_before_action:require_login
+  skip_before_action :require_login
 
   def new
     @contact = Contact.new
   end
 
   def confirm
-    @contact = Contact.new(contact_params)
-    if @contact.invalid?
-      render :new
+    if request.get?
+      redirect_to new_contact_path, alert: "フォームから入力してください"
+      return
     end
+
+    @contact = Contact.new(contact_params)
+    render :confirm
   end
 
   def back
