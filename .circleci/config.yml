@@ -40,7 +40,7 @@ jobs:
           key: gems-{{ checksum "Gemfile.lock" }}
       - run:
           name: Run RuboCop
-          command: bundle exec rubocop
+          command: bundle exec rubocop --parallel || bundle exec rubocop
 
   rspec:
     executor: default
