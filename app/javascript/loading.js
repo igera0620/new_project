@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("🔥 DOMContentLoaded イベント発生");
+document.addEventListener("turbo:load", () => {
+  console.log("🔥 Turbo Load イベント発生！");
 
   // `menu-form` クラスを持つフォームだけを対象にする
   const forms = document.querySelectorAll("form.menu-form");
