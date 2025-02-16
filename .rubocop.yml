@@ -8,6 +8,21 @@ AllCops:
 Metrics/BlockLength:
   Enabled: false
 
-RSpec:
+RSpec/MessageExpectation:
   Enabled: false
 
+RSpec/MultipleDescribes:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/RepeatedExample:
+  Enabled: false
+
+RSpec/ScatteredSetup:
+  Enabled: false
+  
