@@ -49,4 +49,7 @@ Rails.application.routes.draw do
   get '/chatgpt/remaining_requests', to: 'chat_gpt#remaining_requests'
   
   get 'calendars', to: 'calendars#index', as: 'calendars'
+
+  get '/terms', to: 'static_pages#terms', as: 'terms'
+  get '/privacy', to: 'static_pages#privacy', as: 'privacy'
 end
