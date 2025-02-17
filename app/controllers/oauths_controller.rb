@@ -13,28 +13,19 @@ class OauthsController < ApplicationController
   
   def callback
     provider = auth_params[:provider]
-    
-    # 既存ユーザーがいればログイン
+    # 既存のユーザーをプロバイダ情報を元に検索し、存在すればログイン
     if (@user = login_from(provider))
-      redirect_to root_path, notice: "#{provider.titleize}アカウントでログインしました"
+      redirect_to root_path, notice:"#{provider.titleize}アカウントでログインしました"
     else
-      # 既存の email があるかチェック
-      if (@user = User.find_by(email: auth_params[:email]))
-        @user.update(provider: provider) if @user.provider.nil?  # provider が nil なら更新
-        reset_session
-        auto_login(@user)
-        redirect_to root_path, notice: "#{provider.titleize}アカウントでログインしました"
-      else
-        # 新規ユーザー作成
-        begin
-          signup_and_login(provider)
-          redirect_to root_path, notice: "#{provider.titleize}アカウントでログインしました"
-        rescue
-          redirect_to root_path, alert: "#{provider.titleize}アカウントでのログインに失敗しました"
-        end
+      begin
+        # ユーザーが存在しない場合はプロバイダ情報を元に新規ユーザーを作成し、ログイン
+        signup_and_login(provider)
+        redirect_to root_path, notice:"#{provider.titleize}アカウントでログインしました"
+      rescue
+        redirect_to root_path, alert:"#{provider.titleize}アカウントでのログインに失敗しました"
       end
     end
-  end  
+  end
   
     private
   
