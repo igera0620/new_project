@@ -13,19 +13,26 @@ class OauthsController < ApplicationController
   
   def callback
     provider = auth_params[:provider]
+  
+    # ここでデバッグ
+    Rails.logger.debug "Provider: #{provider}"
+    Rails.logger.debug "Auth Params: #{auth_params.inspect}"
+  
     # 既存のユーザーをプロバイダ情報を元に検索し、存在すればログイン
     if (@user = login_from(provider))
-      redirect_to root_path, notice:"#{provider.titleize}アカウントでログインしました"
+      redirect_to root_path, notice: "#{provider.titleize}アカウントでログインしました"
     else
       begin
         # ユーザーが存在しない場合はプロバイダ情報を元に新規ユーザーを作成し、ログイン
         signup_and_login(provider)
-        redirect_to root_path, notice:"#{provider.titleize}アカウントでログインしました"
-      rescue
-        redirect_to root_path, alert:"#{provider.titleize}アカウントでのログインに失敗しました"
+        redirect_to root_path, notice: "#{provider.titleize}アカウントでログインしました"
+      rescue => e
+        Rails.logger.error "Error during signup and login: #{e.message}"
+        redirect_to root_path, alert: "#{provider.titleize}アカウントでのログインに失敗しました"
       end
     end
   end
+  
   
     private
   
