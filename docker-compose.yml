@@ -21,7 +21,6 @@ services:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && rails s -b 'ssl://0.0.0.0:3000?key=config/certs/localhost-key.pem&cert=config/certs/localhost.pem' && bin/dev"
     environment:
-      RAILS_ENV: production
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       DATABASE_URL: "postgres://postgres:password@db/new_project_test"
