@@ -56,7 +56,10 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  config.cache_store = :redis_cache_store, { url: ENV.fetch('REDIS_URL', 'redis://default:AT9bAAIjcDE4YTVjMzNkOThiNjM0NzE2OGY0NDM4ZGZiNDUzZTAzMnAxMA@pleased-marten-16219.upstash.io:6379') }
+  config.cache_store = :redis_cache_store, {
+  url: ENV['REDIS_URL'],
+  ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
+  }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
