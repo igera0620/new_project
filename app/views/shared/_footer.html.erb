@@ -7,16 +7,15 @@
         <div>
           <h3 class="text-sm font-semibold text-white">サービス</h3>
           <ul role="list" class="mt-4 space-y-2">
-            <li><a href="#" class="text-sm hover:text-white">ワークアウトプラン</a></li>
-            <li><a href="#" class="text-sm hover:text-white">カレンダー</a></li>
-            <li><a href="#" class="text-sm hover:text-white">筋トレの報告</a></li>
+          <li><%= link_to 'ワークアウトプラン', workouts_path, class: 'text-sm hover:text-white' %></li>
+          <li><%= link_to 'カレンダー', calendars_path, class: 'text-sm hover:text-white' %></li>
+          <li><%= link_to '筋トレの報告', feedback_workouts_path, class: 'text-sm hover:text-white' %></li>          
           </ul>
         </div>
         <div>
           <h3 class="text-sm font-semibold text-white">サポート</h3>
           <ul role="list" class="mt-4 space-y-2">
             <li><%= link_to 'お問い合わせ', new_contact_path, class: 'text-sm hover:text-white' %></li>
-            <li><a href="#" class="text-sm hover:text-white">フィードバック</a></li>
           </ul>
         </div>
         <div>
