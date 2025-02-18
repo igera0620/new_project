@@ -57,7 +57,7 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   config.cache_store = :redis_cache_store, {
-  url: ENV.fetch('REDIS_URL', 'rediss://default:AT9bAAIjcDE4YTVjMzNkOThiNjM0NzE2OGY0NDM4ZGZiNDUzZTAzMnAxMA@pleased-marten-16219.upstash.io:6379'),
+    url: ENV.fetch('REDIS_URL', 'rediss://default:AT9bAAIjcDE4YTVjMzNkOThiNjM0NzE2OGY0NDM4ZGZiNDUzZTAzMnAxMA@pleased-marten-16219.upstash.io:6379'),
   ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
   }
 

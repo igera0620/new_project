@@ -13,7 +13,7 @@ class OauthsController < ApplicationController
   
   def callback
     provider = auth_params[:provider]
-    email = auth_params[:email]  # 取得した email を使用
+    email = auth_params[:email] # 取得した email を使用
   
     # 既存のユーザーがいればログイン
     if (@user = login_from(provider))
