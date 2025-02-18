@@ -2,9 +2,6 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   NewCops: enable
-
-Metrics/BlockLength:
-  Enabled: false
   Exclude:
     - config/environments/development.rb
     - config/environments/production.rb
