@@ -79,10 +79,6 @@ Instagram, Twitter, Facebook, TikTokなど: 筋トレやフィットネスに関
 - 方針: ユーザーの選択に応じて、事前に定義されたメニューセットを表示。これらのメニューはJSONファイルやデータベースに保存し、必要に応じて読み込む。
 - API: 特定の外部APIは必要なく、内部データベースやファイルからデータを取得。
 
-## ユーザー同士の交流が出来る掲示板機能
-- 方針: RailsのAction Cableを使用してリアルタイムの掲示板機能を実装。ユーザーは投稿、コメント、いいね機能を使用できるようにする。
-- API: 内部的にRailsのWebSocketを使用し、リアルタイム通信を実現。
-
 # 画面遷移図
 
 [画面遷移図](https://www.figma.com/design/iI4guY9hV9iF5Yt4Lwx7ip/%E7%84%A1%E9%A1%8C?node-id=0-1&t=430NFehQVZY1Zuke-1)# Test CI
