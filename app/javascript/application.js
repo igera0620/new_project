@@ -8,6 +8,8 @@ import './calendar';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import "./loading";
+import "./fadein";
+import "./headerButton.js"
 
 function initialize() {
   const header = document.getElementById('main-header');

@@ -1,39 +1,66 @@
-<div class="relative isolate overflow-hidden bg-gray-900 min-h-screen">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-20 text-center">
-    <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">筋肉は全てを解決する</h2>
-    <p class="mt-4 sm:mt-6 text-lg sm:text-xl leading-7 sm:leading-8 text-gray-300">AIにメニューを組んでもらおう！</p>
+<div class="relative isolate overflow-hidden bg-gray-900 min-h-screen bg-cover bg-center bg-fixed bg-blur" style="background-image: url('<%= asset_path("muscle-bg.jpg") %>');">
+  <!-- 背景のみにオーバーレイ & ぼかしを適用 -->
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
+
+  <!-- 文字がぼやけないように `relative z-10` を適用 -->
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-20 text-center">
+    <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+      筋肉は全てを解決する
+    </h2>
+    <p class="mt-4 sm:mt-6 text-lg sm:text-xl leading-7 sm:leading-8 text-gray-300">
+      AIにメニューを組んでもらおう！
+    </p>
+  </div>
+
+
+  <!-- 🏋️‍♂️ 筋トレのメリット -->
+  <div class="relative z-10 mx-auto mt-12 sm:mt-16 max-w-4xl lg:mx-0 lg:max-w-none text-center fade-in">
+    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+      筋トレのメリット
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
+      <% [ 
+        ["健康維持 & 生活の質向上", "筋トレをすることで基礎代謝が上がり、太りにくい体に！さらに、姿勢改善や腰痛予防にも効果的。"], 
+        ["メンタルの安定", "運動によってストレスが軽減され、幸福ホルモン（セロトニン・ドーパミン）が分泌！ポジティブな気持ちになれる。"],
+        ["自信がつく", "筋トレを続けることで見た目が変わり、自己肯定感UP！強くたくましい体は自信につながる。"],
+        ["睡眠の質向上", "適度な運動で深い睡眠を得やすくなり、疲労回復効果UP！朝スッキリ目覚められる。"],
+        ["成功体験の積み重ね", "「昨日より重い重量を上げられた！」「回数が増えた！」など、小さな成功が積み重なり、自己成長を実感できる。"],
+        ["老化防止", "筋肉は年齢とともに減少するが、筋トレを続けることで老化を遅らせ、若々しい体を維持できる。"]
+      ].each do |title, description| %>
+        <div class="bg-white/10 p-4 sm:p-6 rounded-xl ring-1 ring-white/10 fade-in">
+          <h4 class="font-semibold text-white"><%= title %></h4>
+          <p class="mt-2 text-gray-300 text-sm sm:text-base"><%= description %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
 
   <!-- 🏋️‍♂️ 使い方セクション -->
-  <div class="mx-auto mt-12 sm:mt-16 max-w-4xl lg:mx-0 lg:max-w-none text-center">
-    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">使い方の説明</h2>
+  <div class="relative z-10 mx-auto mt-12 sm:mt-16 max-w-4xl lg:mx-0 lg:max-w-none text-center fade-in">
+    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+      使い方の説明
+    </h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
-      <div class="bg-white/10 p-4 sm:p-6 rounded-xl ring-1 ring-white/10">
-        <h4 class="font-semibold text-white">1. ユーザー登録 & ログイン</h4>
-        <p class="mt-2 text-gray-300 text-sm sm:text-base">Google認証を使えばすぐにログイン可能！</p>
-      </div>
-      <div class="bg-white/10 p-4 sm:p-6 rounded-xl ring-1 ring-white/10">
-        <h4 class="font-semibold text-white">2. 筋トレメニューの提案</h4>
-        <p class="mt-2 text-gray-300 text-sm sm:text-base">「ジム」「家」の選択とレベル設定で最適なメニューを提案！</p>
-      </div>
-      <div class="bg-white/10 p-4 sm:p-6 rounded-xl ring-1 ring-white/10">
-        <h4 class="font-semibold text-white">3. 筋トレを実施</h4>
-        <p class="mt-2 text-gray-300 text-sm sm:text-base">提案されたメニューでトレーニングし、「やった！」ボタンを押そう！</p>
-      </div>
-      <div class="bg-white/10 p-4 sm:p-6 rounded-xl ring-1 ring-white/10">
-        <h4 class="font-semibold text-white">4. フィードバック</h4>
-        <p class="mt-2 text-gray-300 text-sm sm:text-base">「やった！」ならごほうび動画、「サボった…」なら喝が入る動画を表示！</p>
-      </div>
+      <% [
+        ["ユーザー登録 & ログイン", "Google認証を使えばすぐにログイン可能！"],
+        ["筋トレメニューの提案", "「ジム」「家」の選択とレベル設定で最適なメニューを提案！"],
+        ["筋トレを実施", "提案されたメニューでトレーニングし、「やった！」ボタンを押そう！"],
+        ["フィードバック", "「やった！」ならごほうび動画、「サボった…」なら喝が入る動画を表示！"]
+      ].each do |title, description| %>
+        <div class="bg-white/10 p-4 sm:p-6 rounded-xl ring-1 ring-white/10 fade-in">
+          <h4 class="font-semibold text-white"><%= title %></h4>
+          <p class="mt-2 text-gray-300 text-sm sm:text-base"><%= description %></p>
+        </div>
+      <% end %>
     </div>
   </div>
 
   <!-- 📅 ナビゲーションメニュー -->
-  <div class="mx-auto mt-12 sm:mt-16 grid max-w-xl sm:max-w-2xl lg:max-w-none grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+  <div class="relative z-10 mx-auto mt-12 sm:mt-16 grid max-w-xl sm:max-w-2xl lg:max-w-none grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 fade-in">
     <%= render "shared/home_link", path: workouts_path, title: "メニューを組みたい方はこちら", description: "条件を提示して、自分の環境、レベルに適したメニューを組んでもらおう！", icon_class: "text-indigo-400" %>
 
     <%= render "shared/home_link", path: calendars_path, title: "カレンダーを見る", description: "AIが組んだ筋トレ予定をカレンダーで確認しよう！", icon_class: "text-red-400" %>
 
     <%= render "shared/home_link", path: feedback_workouts_path, title: "筋トレの報告", description: "やったら報告！サボっても正直に申告しよう！", icon_class: "text-green-400" %>
   </div>
-
 </div>
