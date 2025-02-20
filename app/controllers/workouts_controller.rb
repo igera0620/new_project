@@ -2,13 +2,12 @@ class WorkoutsController < ApplicationController
   before_action :require_login
   
   def index
-    @workouts = current_user.workouts.order(created_at: :desc).limit(1) # `.limit(1)` で配列のまま
-    Rails.logger.debug "✅ 取得したワークアウト: #{@workouts.inspect}"  # デバッグログ
+    @workouts = current_user.workouts.order(created_at: :desc).limit(1)
   
     respond_to do |format|
       format.html { render :index }
       format.json do
-        render json: @workouts.map { |workout|  # ← `map` を使えるようにする
+        render json: @workouts.map { |workout|
           {
             id: workout.id,
             title: workout.title || "ワークアウト",
