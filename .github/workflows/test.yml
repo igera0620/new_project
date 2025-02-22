@@ -11,7 +11,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: new_project_test
+          POSTGRES_DB: test_database
           GITHUB_ACTIONS: "true"
           CI: "true"
         ports:
@@ -47,7 +47,7 @@ jobs:
       - name: データベースを作成
         env:
           RAILS_ENV: test
-          DATABASE_URL: "postgres://postgres:password@127.0.0.1:5432/test_database"
+          DATABASE_URL: "postgres://postgres:password@db/new_project_test"
         run: |
           bundle exec rails db:create
           bundle exec rails db:migrate
