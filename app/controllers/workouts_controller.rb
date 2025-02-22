@@ -94,15 +94,11 @@ class WorkoutsController < ApplicationController
     @workout = current_user.workouts.find_by(id: params[:id])
   
     if @workout
-      Rails.logger.debug "✅ Workout ID=#{@workout.id} を削除します"
       @workout.destroy
-      Rails.logger.debug "✅ Workout ID=#{@workout.id} を削除しました"
-  
       respond_to do |format|
         format.json { render json: { message: "ワークアウトが削除されました", success: true }, status: :ok }
       end
     else
-      Rails.logger.debug "❌ Workout ID=#{params[:id]} が見つかりません"
       respond_to do |format|
         format.json { render json: { message: "ワークアウトが見つかりません", success: false }, status: :not_found }
       end
