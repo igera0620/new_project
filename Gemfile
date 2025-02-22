@@ -114,3 +114,7 @@ gem 'redis'
 gem 'jquery-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+
+gem "aws-sdk-s3", require: false
+gem 'fog-aws'
+gem 'dotenv-rails'
