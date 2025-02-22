@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
 
-  has_many :workouts
+  has_many :workouts, dependent: :destroy
 
   has_one_attached :avatar
 
