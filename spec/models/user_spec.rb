@@ -33,16 +33,16 @@ RSpec.describe User, type: :model do
   describe '削除時の挙動' do
     it 'ユーザーを削除すると関連するワークアウトも削除される' do
       user = create(:user)
-      create(:workout, user: user)  # 変数の代入を削除
-    
+      create(:workout, user: user) # 変数の代入を削除
+
       expect { user.destroy }.to change { Workout.count }.by(-1)
     end
-    
+
     it 'ユーザーを削除すると関連する認証情報も削除される' do
       user = create(:user)
-      create(:authentication, user: user)  # 変数の代入を削除
-    
+      create(:authentication, user: user) # 変数の代入を削除
+
       expect { user.destroy }.to change { Authentication.count }.by(-1)
-    end    
+    end
   end
 end
