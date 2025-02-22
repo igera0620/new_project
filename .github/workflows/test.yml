@@ -47,7 +47,7 @@ jobs:
       - name: データベースを作成
         env:
           RAILS_ENV: test
-          DATABASE_URL: "postgres://postgres:password@db/new_project_test"
+          DATABASE_URL: "postgres://postgres:password@127.0.0.1:5432/new_project_test"
         run: |
           bundle exec rails db:create
           bundle exec rails db:migrate
