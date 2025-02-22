@@ -8,16 +8,6 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 # that will avoid rails generators crashing because migrations haven't been run yet
 # return unless Rails.env.test?
 require 'rspec/rails'
-
-ENV['SORCERY_MAILER'] ||= 'dummy_mailer'
-ENV['LINE_KEY'] ||= 'dummy_key'
-ENV['LINE_SECRET'] ||= 'dummy_secret'
-
-puts "Sorcery ENV Check:"
-puts "SORCERY_MAILER: #{ENV.fetch('SORCERY_MAILER', nil)}"
-puts "LINE_KEY: #{ENV.fetch('LINE_KEY', nil)}"
-puts "LINE_SECRET: #{ENV.fetch('LINE_SECRET', nil)}"
-
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
