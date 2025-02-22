@@ -5,3 +5,4 @@ class AvatarUploader < CarrierWave::Uploader::Base
   else
     storage :file
   end
+end
