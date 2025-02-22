@@ -9,13 +9,13 @@ services:
       - postgres_volume:/var/lib/postgresql/data
     restart: always
 
-  redis:  # 👈 Redis サービスを追加
+  redis:
     image: redis:latest
     container_name: redis
     restart: always
     ports:
-      - "6379:6379"  # 👈 ホストとコンテナのポートをマッピング
-    command: redis-server --appendonly yes  # 👈 永続化オプション（オプション）
+      - "6379:6379"
+    command: redis-server --appendonly yes
 
   web:
     build: .

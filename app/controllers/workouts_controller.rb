@@ -2,13 +2,12 @@ class WorkoutsController < ApplicationController
   before_action :require_login
   
   def index
-    @workouts = current_user.workouts.order(created_at: :desc).limit(1) # `.limit(1)` で配列のまま
-    Rails.logger.debug "✅ 取得したワークアウト: #{@workouts.inspect}"  # デバッグログ
+    @workouts = current_user.workouts.order(created_at: :desc).limit(1)
   
     respond_to do |format|
       format.html { render :index }
       format.json do
-        render json: @workouts.map { |workout|  # ← `map` を使えるようにする
+        render json: @workouts.map { |workout|
           {
             id: workout.id,
             title: workout.title || "ワークアウト",
@@ -95,15 +94,11 @@ class WorkoutsController < ApplicationController
     @workout = current_user.workouts.find_by(id: params[:id])
   
     if @workout
-      Rails.logger.debug "✅ Workout ID=#{@workout.id} を削除します"
       @workout.destroy
-      Rails.logger.debug "✅ Workout ID=#{@workout.id} を削除しました"
-  
       respond_to do |format|
         format.json { render json: { message: "ワークアウトが削除されました", success: true }, status: :ok }
       end
     else
-      Rails.logger.debug "❌ Workout ID=#{params[:id]} が見つかりません"
       respond_to do |format|
         format.json { render json: { message: "ワークアウトが見つかりません", success: false }, status: :not_found }
       end

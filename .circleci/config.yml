@@ -4,6 +4,8 @@ executors:
   default:
     docker:
       - image: cimg/ruby:3.2.2
+      - image: cimg/postgres:15.1
+        name: db
     working_directory: ~/app
     environment:
       BUNDLE_PATH: vendor/bundle
@@ -67,10 +69,11 @@ jobs:
       - run:
           name: Wait for PostgreSQL
           command: |
-            for i in {1..10}; do
-              nc -z db 5432 && echo "PostgreSQL is up" && break
+            for i in {1..20}; do
+              pg_isready -U postgres -h db && echo "PostgreSQL is up" && break
               echo "Waiting for PostgreSQL..." && sleep 3
             done
+            pg_isready -U postgres -h db || (echo "PostgreSQL did not start in time" && exit 1)
       - run:
           name: Set up database
           command: |

@@ -1,4 +1,5 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'shoulda/matchers'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
@@ -8,16 +9,6 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 # that will avoid rails generators crashing because migrations haven't been run yet
 # return unless Rails.env.test?
 require 'rspec/rails'
-
-ENV['SORCERY_MAILER'] ||= 'dummy_mailer'
-ENV['LINE_KEY'] ||= 'dummy_key'
-ENV['LINE_SECRET'] ||= 'dummy_secret'
-
-puts "Sorcery ENV Check:"
-puts "SORCERY_MAILER: #{ENV.fetch('SORCERY_MAILER', nil)}"
-puts "LINE_KEY: #{ENV.fetch('LINE_KEY', nil)}"
-puts "LINE_SECRET: #{ENV.fetch('LINE_SECRET', nil)}"
-
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -53,6 +44,11 @@ RSpec.configure do |config|
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
+
+  config.include Shoulda::Matchers::ActiveRecord, type: :model
+  config.include Shoulda::Matchers::ActiveModel, type: :model
+
+  config.include FactoryBot::Syntax::Methods
 
   # RSpec Rails uses metadata to mix in different behaviours to your tests,
   # for example enabling you to call `get` and `post` in request specs. e.g.:

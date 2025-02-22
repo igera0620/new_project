@@ -15,8 +15,6 @@ class UsersController < ApplicationController
       auto_login(@user)
       redirect_to root_path, notice: 'アカウントが作成されました。'
     else
-      # エラー内容をログに出力
-      Rails.logger.debug("User save failed: #{@user.errors.full_messages}")
       flash.now[:alert] = 'アカウントの作成に失敗しました。入力内容を確認してください。'
       render :new
     end

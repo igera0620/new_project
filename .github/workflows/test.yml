@@ -16,6 +16,11 @@ jobs:
           CI: "true"
         ports:
           - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -h 127.0.0.1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: GitHubリポジトリのコードを取得
@@ -35,19 +40,10 @@ jobs:
           sudo apt-get -yqq install libpq-dev
           cp config/database.github.yml config/database.yml
 
-      - name: PostgreSQLが起動するまで待機
-        run: |
-          for i in {1..10}; do
-            pg_isready -U postgres -h 127.0.0.1 && echo "PostgreSQL is ready!" && exit 0
-            echo "Waiting for PostgreSQL..."
-            sleep 3
-          done
-          echo "PostgreSQL did not start in time" && exit 1
-
       - name: データベースを作成
         env:
           RAILS_ENV: test
-          DATABASE_URL: "postgres://postgres:password@127.0.0.1:5432/test_database"
+          DATABASE_URL: "postgres://postgres:password@127.0.0.1:5432/new_project_test"
         run: |
           bundle exec rails db:create
           bundle exec rails db:migrate
@@ -56,4 +52,8 @@ jobs:
         run: bundle exec rubocop
 
       - name: RSpecを実行
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: "postgresql://postgres:password@localhost:5432/new_project_test"
         run: bundle exec rspec
+
