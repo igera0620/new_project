@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Workout, type: :model do
+RSpec.describe Workout do
   describe '関連付け' do
-    it { should belong_to(:user) }
+    it { is_expected.to belong_to(:user) }
   end
 end

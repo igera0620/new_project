@@ -1,5 +1,5 @@
 class Contact < ApplicationRecord
-  enum subject: {
+  enum :subject, {
     general: 0,  # 一般のお問い合わせ
     support: 1,  # サポート
     feedback: 2, # フィードバック

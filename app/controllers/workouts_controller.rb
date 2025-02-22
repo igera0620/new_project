@@ -14,7 +14,7 @@ class WorkoutsController < ApplicationController
             start: workout.start_time&.strftime("%Y-%m-%d") || workout.date&.strftime("%Y-%m-%d"),
             end: workout.end_time&.strftime("%Y-%m-%d") || workout.date&.strftime("%Y-%m-%d"),
             description: workout.description || "詳細なし",
-            completed: workout.completed.present? ? workout.completed : false
+            completed: workout.completed.presence || false
           }
         }
       end
@@ -32,8 +32,8 @@ class WorkoutsController < ApplicationController
     @workout.assign_attributes(
       title: body_part,
       description: @custom_menu,
-      start_time: Date.today,
-      end_time: Date.today
+      start_time: Time.zone.today,
+      end_time: Time.zone.today
     )
     @workout.save!
 
@@ -51,16 +51,16 @@ class WorkoutsController < ApplicationController
   end  
 
   def feedback
-    @workout = current_user.workouts.find_by(date: Date.today)
-    @workout ||= current_user.workouts.new(date: Date.today)
+    @workout = current_user.workouts.find_by(date: Time.zone.today)
+    @workout ||= current_user.workouts.new(date: Time.zone.today)
   end
 
   def submit_feedback
-    @workout = current_user.workouts.find_or_initialize_by(date: Date.today)
+    @workout = current_user.workouts.find_or_initialize_by(date: Time.zone.today)
     @workout.completed = params[:completed] == 'true'
 
     if @workout.save
-      puts "✅ ワークアウトID: #{@workout.id} の `completed` が #{@workout.completed} に更新されました！"
+      Rails.logger.debug { "✅ ワークアウトID: #{@workout.id} の `completed` が #{@workout.completed} に更新されました！" }
   
       respond_to do |format|
         format.html do

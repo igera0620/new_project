@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
 
+  def new
+    @user = User.new
+  end
+
   def create
     user_params = params[:user] || {}
     email = user_params[:email]
@@ -15,10 +19,6 @@ class SessionsController < ApplicationController
       flash.now[:alert] = 'ログインに失敗しました'
       render action: 'new'
     end
-  end
-
-  def new
-    @user = User.new
   end
 
   def destroy
