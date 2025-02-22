@@ -4,6 +4,8 @@ executors:
   default:
     docker:
       - image: cimg/ruby:3.2.2
+      - image: cimg/postgres:15.1
+        name: db
     working_directory: ~/app
     environment:
       BUNDLE_PATH: vendor/bundle
