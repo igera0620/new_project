@@ -116,3 +116,5 @@ gem 'momentjs-rails'
 gem "aws-sdk-s3", require: false
 gem 'dotenv-rails'
 gem 'carrierwave', '~> 2.2'
+
+gem "rails-erd", "~> 1.7"
