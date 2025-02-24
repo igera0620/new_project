@@ -44,19 +44,6 @@ Instagram, Twitter, Facebook, TikTokなど: 筋トレやフィットネスに関
 5. ユーザーインターフェース
    - ユーザー一覧画面
 
-## 本リリースまでに実装するもの
-1. 掲示板機能
-   - ユーザー同士の交流が出来る掲示板機能の導入
-
-2. プロフィール管理機能
-   - ユーザーが自身のプロフィールを編集・管理できる機能
-
-3. 通知機能
-   - 筋トレのリマインダーやフィードバックに基づいた通知機能
-
-4. 進捗管理機能
-   - ユーザーが自身の筋トレの進捗を記録・確認できる機能
-
 # 機能の実装方針予定
 
 ## 筋トレメニューを組んでくれるAIの導入
@@ -85,3 +72,7 @@ Instagram, Twitter, Facebook, TikTokなど: 筋トレやフィットネスに関
 
 # ER図
 - ![ER Diagram](docs/筋肉は全てを解決する.drawio.png)
+
+# 画面遷移図
+
+- https://www.figma.com/design/4C25UVsbUpLTE7zcv9w6nP/%E6%9C%AC%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9?node-id=0-1&m=dev&t=0VSVclDlOOdioWNj-1
