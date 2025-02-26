@@ -1,7 +1,11 @@
 <div class="relative fade-in isolate overflow-hidden bg-gray-900 min-h-screen flex flex-col items-center justify-center">
   <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-20 w-full">
-    <div class="mx-auto max-w-2xl lg:mx-0 text-center">
-      <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">筋トレメニューを選択</h2>
+    <div class="flex items-center justify-center h-screen">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+          筋トレメニューを選択
+        </h2>
+      </div>
     </div>
 
     <div id="loading-spinner" class="hidden fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
@@ -15,7 +19,7 @@
         <%= form_with url: generate_menu_path, method: :post, local: true, data: { turbo: false }, class: "menu-form" do %>
           <%= hidden_field_tag :body_part, part %>
           <button type="submit" class="flex items-center justify-center rounded-xl bg-white/10 p-4 text-white text-lg font-semibold shadow-lg transition-all hover:bg-white/20">
-            <%= part %>のトレーニング
+            <%= part %>トレニーング
           </button>
         <% end %>
       <% end %>

@@ -1,5 +1,5 @@
 class ChatGptController < ApplicationController
-  before_action :require_login # ユーザーがログインしていることを保証
+  before_action :require_login
 
   def ask
     prompt = params[:prompt]

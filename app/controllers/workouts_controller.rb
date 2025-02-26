@@ -60,8 +60,6 @@ class WorkoutsController < ApplicationController
     @workout.completed = params[:completed] == 'true'
 
     if @workout.save
-      Rails.logger.debug { "✅ ワークアウトID: #{@workout.id} の `completed` が #{@workout.completed} に更新されました！" }
-  
       respond_to do |format|
         format.html do
           if @workout.completed

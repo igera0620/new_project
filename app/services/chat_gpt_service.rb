@@ -1,8 +1,8 @@
 class ChatGptService
   require 'openai'
 
-  LIMIT_COUNT = 5 # 1日5回まで
-  LIMIT_TIME  = 24.hours # 1日（秒換算で 86400）
+  LIMIT_COUNT =
+  LIMIT_TIME  = 24.hours
 
   def initialize
     @openai = OpenAI::Client.new(access_token: ENV.fetch("OPENAI_ACCESS_TOKEN"))
@@ -13,8 +13,8 @@ class ChatGptService
     count = REDIS.get(key).to_i
 
     if count < LIMIT_COUNT
-      REDIS.incr(key) # 1回増やす
-      REDIS.expire(key, LIMIT_TIME) if count == 0 # 初回なら期限をセット
+      REDIS.incr(key)
+      REDIS.expire(key, LIMIT_TIME) if count == 0
       true
     else
       false
@@ -32,10 +32,10 @@ class ChatGptService
     
     response = @openai.chat(
       parameters: {
-        model: "gpt-3.5-turbo", # Required. # 使用するGPT-3のエンジンを指定
+        model: "gpt-3.5-turbo",
         messages: [{ role: "system", content: "You are a helpful assistant. response to japanese" }, { role: "user", content: prompt }],
-        temperature: 0.7, # 応答のランダム性を指定
-        max_tokens: 500,  # 応答の長さを指定
+        temperature: 0.7,
+        max_tokens: 500,
       },
       )
     response['choices'].first['message']['content']
