@@ -1,12 +1,13 @@
-<div class="relative fade-in isolate overflow-hidden bg-gray-900 min-h-screen flex flex-col items-center justify-center">
+<!-- PC版（sm以上の画面向け） -->
+<div class="relative fade-in isolate overflow-hidden bg-gray-900 min-h-screen flex flex-col items-center justify-center hidden sm:block">
+
   <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-20 w-full">
-    <div class="flex items-center justify-center h-screen">
-      <div class="mx-auto max-w-2xl text-center">
-        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-          筋トレメニューを選択
-        </h2>
-      </div>
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+        筋トレメニューを選択
+      </h2>
     </div>
+  </div>
 
     <div id="loading-spinner" class="hidden fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
       <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
@@ -28,6 +29,38 @@
     <!-- カレンダーエリア -->
     <div class="mx-auto mt-10 max-w-6xl bg-white p-6 rounded-lg shadow-md">
       <div id="calendar"></div>
+    </div>
+  </div>
+</div>
+
+<div class="relative fade-in isolate overflow-hidden bg-gray-900 min-h-screen flex flex-col items-center justify-center sm:hidden">
+  <div class="mx-auto max-w-full px-4 mt-10 w-full">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white">
+        筋トレメニューを選択
+      </h2>
+    </div>
+
+    <div id="loading-spinner" class="hidden fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+      <p class="text-white ml-2 text-sm">メニューを作成中...</p>
+    </div>
+
+    <!-- モバイル版: メニュー選択エリア（1列で表示） -->
+    <div class="mx-auto mt-6 grid grid-cols-1 gap-4 w-full max-w-xs">
+      <% ["胸", "脚", "腕", "肩", "背中", "腹筋"].each do |part| %>
+        <%= form_with url: generate_menu_path, method: :post, local: true, data: { turbo: false }, class: "menu-form" do %>
+          <%= hidden_field_tag :body_part, part %>
+          <button type="submit" class="flex items-center justify-center rounded-xl bg-white/10 p-3 text-white text-base font-semibold shadow-md transition-all hover:bg-white/20 w-full">
+            <%= part %>トレーニング
+          </button>
+        <% end %>
+      <% end %>
+    </div>
+
+    <!-- モバイル版: カレンダーエリア（サイズ調整） -->
+    <div class="mx-auto mt-8 w-full bg-white p-4 rounded-lg shadow-md">
+      <div id="calendar" class="text-sm"></div>
     </div>
   </div>
 </div>
