@@ -1,5 +1,3 @@
-/* app/assets/stylesheets/custom.css */
-
 html, body {
   margin: 0;
   padding: 0;
@@ -9,7 +7,7 @@ html, body {
 }
 
 .hidden {
-  display: none !important;
+  display: block !important;
 }
 
 .flash {
@@ -23,30 +21,22 @@ html, body {
   margin: 1rem !important;
   border: 1px solid #f5c6cb !important;
   border-radius: 5px !important;
-  z-index: 1000 !important; /* 高いが、他の要素のz-indexと競合しないように設定 */
-  pointer-events: auto !important; /* ポインターイベントを許可 */
-}
-
-#toggle-header {
-  z-index: 1050 !important;
+  z-index: 1000 !important;
+  pointer-events: auto !important;
 }
 
 #main-header {
-  z-index: 900 !important; /* フラッシュメッセージより低いz-indexを設定 */
-  transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  overflow: hidden;
-}
-
-#main-header.hidden {
-  max-height: 0;
-  opacity: 0;
-}
-
-#main-header.shown {
-  max-height: 200px; /* ヘッダーの実際の高さに調整 */
-  opacity: 1;
+  z-index: 900 !important;
+  background-color: #333;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 #profileMenu {
-  z-index: 1100 !important; /* プロフィールメニューのz-indexを設定 */
+  z-index: 1100 !important;
 }

@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe "サンプルテスト", type: :model do
-  it "テストが動くことを確認する" do
-    expect(1 + 1).to eq(2)
-  end
+RSpec.describe User, type: :model do
+  it { is_expected.to have_many(:workouts) }
 end

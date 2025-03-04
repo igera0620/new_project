@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   get 'users/sign_up', to: 'users#new', as: 'new_user_registration'
   post 'users', to: 'users#create'
 
-  get 'workouts', to: 'workouts#index' # メニュー選択ページ
-  post 'submit_menu', to: 'workouts#submit_menu' # メニュー選択後の処理
+  get 'workouts', to: 'workouts#index'
+  post 'submit_menu', to: 'workouts#submit_menu'
 
   get 'new_menu', to: 'workouts#new_menu'
   post 'create_menu', to: 'workouts#create_menu'
@@ -29,10 +29,10 @@ Rails.application.routes.draw do
 
   resources :workouts do
     collection do
-      get 'workout_completed'      # ワークアウト完了時のページ
-      get 'workout_not_completed'  # ワークアウト未完了時のページ
-      get 'feedback'               # フィードバックページのルート
-      post 'submit_feedback'       # フィードバックの送信
+      get 'workout_completed'
+      get 'workout_not_completed'
+      get 'feedback'
+      post 'submit_feedback'
       get 'show_menu'
     end
   end

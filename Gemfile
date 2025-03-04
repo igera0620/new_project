@@ -93,8 +93,6 @@ gem 'sorcery'
 
 gem "ruby-openai"
 
-gem 'dotenv-rails', groups: [:development, :test, :production]
-
 gem 'image_processing', '~> 1.2'
 
 gem 'fog-aws'
@@ -116,6 +114,7 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 
 gem "aws-sdk-s3", require: false
-gem 'fog-aws'
 gem 'dotenv-rails'
 gem 'carrierwave', '~> 2.2'
+
+gem "rails-erd", "~> 1.7"

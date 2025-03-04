@@ -25,14 +25,14 @@ module ApplicationHelper
         description: :description,
         type: 'website',
         url: request.original_url,
-        image: image_url('ogp.png'), # OGP画像のパス（適宜変更）
+        image: image_url('ogp.png'),
         locale: 'ja-JP'
       },
-      # Twitter用の設定
+      
       twitter: {
-        card: 'summary_large_image', # 大きめの画像を表示するカード形式
-        site: '@your_twitter_account', # 公式Twitterアカウント（必要に応じて変更）
-        image: image_url('ogp.png') # OGP画像のパス（適宜変更）
+        card: 'summary_large_image',
+        site: '@your_twitter_account',
+        image: image_url('ogp.png')
       }
     }
   end

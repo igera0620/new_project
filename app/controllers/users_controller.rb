@@ -5,8 +5,16 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def show
+    @user = current_user
+  end
+
   def new
     @user = User.new
+  end
+
+  def edit
+    @user = current_user
   end
 
   def create
@@ -18,14 +26,6 @@ class UsersController < ApplicationController
       flash.now[:alert] = 'アカウントの作成に失敗しました。入力内容を確認してください。'
       render :new
     end
-  end
-
-  def show
-    @user = current_user
-  end
-
-  def edit
-    @user = current_user
   end
 
   def update

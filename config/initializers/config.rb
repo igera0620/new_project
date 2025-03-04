@@ -3,8 +3,8 @@ Config.setup do |config|
 end
 
 Rails.application.reloader.to_prepare do
-  puts "===== TEST SETTINGS CHECK ====="
-  puts "Settings.sorcery: #{Settings.sorcery.inspect}"
-  puts "Settings.sorcery.line_callback_url: #{Settings.sorcery.line_callback_url.inspect}"
-  puts "================================"
+  Rails.logger.debug "===== TEST SETTINGS CHECK ====="
+  Rails.logger.debug { "Settings.sorcery: #{Settings.sorcery.inspect}" }
+  Rails.logger.debug { "Settings.sorcery.line_callback_url: #{Settings.sorcery.line_callback_url.inspect}" }
+  Rails.logger.debug "================================"
 end

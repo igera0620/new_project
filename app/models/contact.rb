@@ -1,9 +1,9 @@
 class Contact < ApplicationRecord
-  enum subject: {
-    general: 0,  # 一般のお問い合わせ
-    support: 1,  # サポート
-    feedback: 2, # フィードバック
-    other: 3     # その他
+  enum :subject, {
+    general: 0,
+    support: 1,
+    feedback: 2,
+    other: 3
   }
 
   validates :name, presence: true
