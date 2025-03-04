@@ -46,6 +46,23 @@
 | [![Image from Gyazo](https://i.gyazo.com/df4edc63e424707f753ef3581a0b2535.gif)](https://gyazo.com/df4edc63e424707f753ef3581a0b2535) |
 | 筋トレを行った場合は、カレンダーに結果が反映されて、自分がどれだけ筋トレを行っているかが分かります。 |
 
+# 技術構成について
+
+| カテゴリ | 技術内容 |
+| --- | --- | 
+| サーバーサイド | Ruby on Rails 7.0.6・Ruby 3.2.2 |
+| フロントエンド | Ruby on Rails（ERB テンプレート）・JavaScript（ES6） |
+| CSSフレームワーク | Tailwind CSS |
+| Web API | OpenAI API（GPT-3.5-turbo）・Google API（Google認証）・LINE Developers（LINEログイン） |
+| データベースサーバー | PostgreSQL |
+| キャッシュサーバー | Redis（ワークアウトメニュー生成） |
+| ファイルサーバー | AWS S3（Active Storage） |
+| 認証 | Sorcery（ユーザー認証） |
+| アプリケーションサーバー | Render |
+| バージョン管理ツール | GitHub・Git Flow |
+| 開発環境 | VS Code・mkcert（ローカルSSL） |
+| その他 | FullCalendar（カレンダー機能）・ransack（検索機能）・enum_help（enum翻訳） |
+
 ## ER図
 ![ER Diagram](docs/筋肉は全てを解決する.drawio.png)
 
