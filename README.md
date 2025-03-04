@@ -46,5 +46,8 @@
 | [![Image from Gyazo](https://i.gyazo.com/df4edc63e424707f753ef3581a0b2535.gif)](https://gyazo.com/df4edc63e424707f753ef3581a0b2535) |
 | 筋トレを行った場合は、カレンダーに結果が反映されて、自分がどれだけ筋トレを行っているかが分かります。 |
 
+## ER図
+![ER Diagram](docs/筋肉は全てを解決する.drawio.png)
+
 ## 画面遷移図
 https://www.figma.com/design/4C25UVsbUpLTE7zcv9w6nP/%E6%9C%AC%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9?node-id=0-1&m=dev&t=0VSVclDlOOdioWNj-1
