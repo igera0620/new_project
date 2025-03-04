@@ -1,7 +1,7 @@
 class ChatGptService
   require 'openai'
 
-  LIMIT_COUNT =
+  LIMIT_COUNT = 5
   LIMIT_TIME  = 24.hours
 
   def initialize

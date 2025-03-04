@@ -28,7 +28,7 @@
 
     <!-- カレンダーエリア -->
     <div class="mx-auto mt-10 max-w-6xl bg-white p-6 rounded-lg shadow-md">
-      <div id="calendar"></div>
+      <div id="calendar-pc"></div>
     </div>
   </div>
 </div>
@@ -58,9 +58,14 @@
       <% end %>
     </div>
 
+    <div id="loading-spinner" class="hidden fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+      <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+      <p class="text-white ml-4">メニューを作成中...</p>
+    </div>
+
     <!-- モバイル版: カレンダーエリア（サイズ調整） -->
     <div class="mx-auto mt-8 w-full bg-white p-4 rounded-lg shadow-md">
-      <div id="calendar" class="text-sm"></div>
+      <div id="calendar-mobile" class="text-sm"></div>
     </div>
   </div>
 </div>
