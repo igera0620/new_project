@@ -1,21 +1,29 @@
-<div class="relative fade-in isolate overflow-hidden bg-gray-900 min-h-screen">
+<div class="relative fade-in isolate overflow-hidden bg-gray-800 min-h-screen">
   <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-20">
     <div class="mx-auto max-w-2xl lg:mx-0">
       <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">筋トレのフィードバック</h2>
       <p class="mt-6 text-lg leading-8 text-gray-300">今日の筋トレを行ったかどうか教えてください。</p>
     </div>
 
-    <div class="mt-12 p-6 bg-white rounded-lg shadow-md w-full break-words">
-      <h3 class="text-2xl font-semibold text-gray-900">フィードバックを送信:</h3>
-      <%= form_with url: submit_feedback_workouts_path, method: :post, local: true do %>
+    <div class="mt-12 p-6 bg-gray-700 rounded-lg shadow-md w-full break-words">
+      <h3 class="text-2xl font-semibold text-white">フィードバックを送信:</h3>
+      <%= form_with url: submit_feedback_workouts_path, method: :post, local: true, data: { turbo: false } do %>
         <div class="mt-4">
-          <%= label_tag :completed, '今日の筋トレを行いましたか？', class: 'block text-sm font-medium text-gray-700' %>
-          <%= radio_button_tag :completed, true, @workout.completed == true %> はい
-          <%= radio_button_tag :completed, false, @workout.completed == false %> いいえ
+          <%= label_tag :completed, '今日の筋トレを行いましたか？', class: 'block text-sm font-medium text-gray-300' %>
+          <div class="mt-2 flex items-center space-x-4">
+            <label class="flex items-center text-white">
+              <%= radio_button_tag :completed, true, @workout.completed == true, class: "h-5 w-5 text-indigo-500 focus:ring-indigo-400 border-gray-600 bg-gray-800" %>
+              <span class="ml-2">はい</span>
+            </label>
+            <label class="flex items-center text-white">
+              <%= radio_button_tag :completed, false, @workout.completed == false, class: "h-5 w-5 text-indigo-500 focus:ring-indigo-400 border-gray-600 bg-gray-800" %>
+              <span class="ml-2">いいえ</span>
+            </label>
+          </div>
         </div>
 
         <div class="mt-6">
-          <%= submit_tag '送信', class: 'px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600' %>
+          <%= submit_tag '送信', class: 'px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:ring focus:ring-indigo-300' %>
         </div>
       <% end %>
     </div>

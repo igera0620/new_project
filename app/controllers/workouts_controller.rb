@@ -2,24 +2,24 @@ class WorkoutsController < ApplicationController
   before_action :require_login
   
   def index
-    @workouts = current_user.workouts.order(created_at: :desc).limit(1)
+    @workouts = current_user.workouts.order(created_at: :desc)
   
     respond_to do |format|
       format.html { render :index }
       format.json do
-        render json: @workouts.map { |workout|
+        render json: @workouts.reject { |workout| workout.title == "ワークアウト" }.map { |workout|
           {
             id: workout.id,
-            title: workout.title || "ワークアウト",
+            title: workout.title.presence,
             start: workout.start_time&.strftime("%Y-%m-%d") || workout.date&.strftime("%Y-%m-%d"),
             end: workout.end_time&.strftime("%Y-%m-%d") || workout.date&.strftime("%Y-%m-%d"),
-            description: workout.description || "詳細なし",
+            description: workout.description.presence,
             completed: workout.completed.presence || false
           }
         }
       end
     end
-  end         
+  end        
 
   def generate_menu
     chatgpt_service = ChatGptService.new
@@ -56,27 +56,18 @@ class WorkoutsController < ApplicationController
   end
 
   def submit_feedback
-    @workout = current_user.workouts.find_or_initialize_by(date: Time.zone.today)
+    @workout = current_user.workouts.where(start_time: Time.zone.today.beginning_of_day..Time.zone.today.end_of_day).order(created_at: :desc).first
+    return head :not_found if @workout.nil?
+  
     @workout.completed = params[:completed] == 'true'
-
     if @workout.save
-      respond_to do |format|
-        format.html do
-          if @workout.completed
-            redirect_to workout_completed_workouts_path, notice: 'フィードバックが送信されました。'
-          else
-            redirect_to workout_not_completed_workouts_path, notice: 'フィードバックが送信されました。'
-          end
-        end
-        format.json do
-          render json: { message: "フィードバックが送信されました", workout: @workout }, status: :ok
-        end
-      end
+      flash[:notice] = "フィードバックが送信されました。"
+      redirect_to @workout.completed ? workout_completed_workouts_path : workout_not_completed_workouts_path and return
     else
       flash.now[:alert] = "フィードバックの送信に失敗しました。"
-      render :feedback
+      render :feedback, status: :unprocessable_entity
     end
-  end
+  end      
 
   def workout_completed
     @video_url = "https://www.youtube.com/embed/Wiho_VPbhZU?list=PL6lqpAyR_3TpQGzHLe4i8-ats_yL6ZlqW"

@@ -24,24 +24,41 @@ function loadCalendar() {
       },
       events: function (fetchInfo, successCallback, failureCallback) {
         fetch('/workouts.json')
-          .then(response => response.json())
+          .then(response => {
+            if (response.redirected) {
+              console.log("✅ サーバーからリダイレクト指示を受けた:", response.url);
+              window.location.href = response.url; // ✅ 強制リダイレクト
+              return;
+            }
+            return response.json();
+          })
           .then(data => {
-            let workouts = Array.isArray(data) ? data : [data];
-
-            let formattedData = workouts.map(event => ({
-              id: event.id,
-              title: event.completed ? "✅ " + event.title : event.title,
-              start: event.start || "",
-              allDay: true,
-              classNames: event.completed ? ['workout-completed'] : ['workout-incomplete']
-            }));
-
+            if (!data) return; // 既にリダイレクト済みなら処理を終了
+      
+            console.log("取得データ:", data); // デバッグ用
+      
+            // ✅ completed: true のデータをマーク
+            let completedTitles = new Set(
+              data.filter(event => event.completed).map(event => `${event.title}-${event.start}`)
+            );
+      
+            let formattedData = data
+              .filter(event => event.title) // ✅ title が null のデータを除外
+              .map(event => ({
+                id: event.id,
+                title: completedTitles.has(`${event.title}-${event.start}`) ? `✅ ${event.title}` : event.title, // ✅ 既存のカレンダーのイベントにレ点をつける
+                start: event.start || "",
+                allDay: true,
+                completed: event.completed || false
+              }));
+      
+            console.log("フィルター後:", formattedData); // デバッグ用
             successCallback(formattedData);
           })
           .catch(error => {
             console.error("イベントデータの取得に失敗:", error);
             failureCallback(error);
-          });
+          });            
       },
       editable: true,
 
