@@ -92,5 +92,9 @@ class WorkoutsController < ApplicationController
         format.json { render json: { message: "ワークアウトが見つかりません", success: false }, status: :not_found }
       end
     end
-  end  
+  end
+
+  def show
+    @workout = Workout.find(params[:id])
+  end
 end

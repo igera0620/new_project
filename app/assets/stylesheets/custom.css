@@ -40,3 +40,7 @@ html, body {
 #profileMenu {
   z-index: 1100 !important;
 }
+
+#workoutModal {
+  display: none;
+}

@@ -1,5 +1,6 @@
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { showWorkoutDetailModal } from './modal';
 
 function loadCalendar() {
   let calendarElements = document.querySelectorAll("#calendar-pc, #calendar-mobile");
@@ -15,8 +16,8 @@ function loadCalendar() {
       plugins: [dayGridPlugin],
       initialView: 'dayGridMonth',
       locale: 'ja',
-      contentHeight: "auto", // 高さを自動調整
-      aspectRatio: 1, // カレンダーの縦横比を調整
+      contentHeight: "auto",
+      aspectRatio: 1,
       headerToolbar: {
         left: 'prev,next',
         center: 'title',
@@ -27,32 +28,27 @@ function loadCalendar() {
           .then(response => {
             if (response.redirected) {
               console.log("✅ サーバーからリダイレクト指示を受けた:", response.url);
-              window.location.href = response.url; // ✅ 強制リダイレクト
+              window.location.href = response.url;
               return;
             }
             return response.json();
           })
           .then(data => {
-            if (!data) return; // 既にリダイレクト済みなら処理を終了
+            if (!data) return;
       
-            console.log("取得データ:", data); // デバッグ用
-      
-            // ✅ completed: true のデータをマーク
             let completedTitles = new Set(
               data.filter(event => event.completed).map(event => `${event.title}-${event.start}`)
             );
       
             let formattedData = data
-              .filter(event => event.title) // ✅ title が null のデータを除外
+              .filter(event => event.title)
               .map(event => ({
                 id: event.id,
-                title: completedTitles.has(`${event.title}-${event.start}`) ? `✅ ${event.title}` : event.title, // ✅ 既存のカレンダーのイベントにレ点をつける
+                title: completedTitles.has(`${event.title}-${event.start}`) ? `💪 ${event.title}` : event.title,
                 start: event.start || "",
                 allDay: true,
                 completed: event.completed || false
               }));
-      
-            console.log("フィルター後:", formattedData); // デバッグ用
             successCallback(formattedData);
           })
           .catch(error => {
@@ -65,42 +61,12 @@ function loadCalendar() {
       eventClick: function (info) {
         let event = info.event;
       
-        if (confirm(`🗑️ "${event.title}" を削除しますか？`)) {
-          info.el.style.pointerEvents = "none";
-      
-          fetch(`/workouts/${event.id}`, {
-            method: 'DELETE',
-            headers: {
-              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
-              'Content-Type': 'application/json'
-            }
-          })
-          .then(response => {
-            if (!response.ok) {
-              return response.json().then(errData => {
-                throw new Error(errData.message || `HTTP ${response.status}`);
-              }).catch(() => {
-                throw new Error(`HTTP ${response.status}`);
-              });
-            }
-            return response.json();
-          })
-          .then(data => {
-            alert(data.message);
-
-            let removedEvent = calendar.getEventById(event.id);
-            if (removedEvent) {
-              removedEvent.remove();
-            }
-      
-            calendar.refetchEvents();
-          })
-          .catch(error => {
-            alert(`削除に失敗しました: ${error.message || "不明なエラー"}`);
-            info.el.style.pointerEvents = "auto";
-          });
+        // 🔥 ユーザーに詳細表示の確認
+        if (confirm(`"${event.title}" の詳細を表示しますか？`)) {
+          // 🔥 確認後に詳細ページへ遷移
+          window.location.href = `/workouts/${event.id}`;
         }
-      }
+      }            
     });
 
     calendar.render();
@@ -163,6 +129,21 @@ function loadCalendar() {
     `;
     document.head.appendChild(style);
   }
+}
+
+function showDetailButton(data) {
+  let detailEl = document.getElementById("workoutDetail");
+
+  detailEl.innerHTML = `
+    <h3>${data.title || "タイトルなし"}</h3>
+    <button id="showDetailBtn" class="mt-2 p-2 bg-blue-500 text-white rounded-lg">詳細を表示</button>
+  `;
+
+  document.getElementById("showDetailBtn").addEventListener("click", function() {
+    showWorkoutDetailModal(data);
+  });
+
+  detailEl.style.display = "block";
 }
 
 document.addEventListener('turbo:load', loadCalendar);

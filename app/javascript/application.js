@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails";
 import "./controllers";
 import "tailwindcss/tailwind.css";
+import * as bootstrap from 'bootstrap';
 import $ from "jquery";
 import "./chatgpt";
 import "./calendar";
@@ -9,6 +10,7 @@ import { Calendar } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import "./loading";
 import "./fadein";
+import "./modal";
 
 function initialize() {
   const header = document.getElementById("main-header");
