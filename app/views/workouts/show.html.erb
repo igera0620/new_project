@@ -1,5 +1,4 @@
 <div class="relative isolate overflow-hidden bg-gray-900 text-white px-6 py-12 sm:py-16 lg:overflow-visible lg:px-0">
-  <!-- 背景デザイン -->
   <div class="absolute inset-0 -z-10 overflow-hidden">
     <svg class="absolute left-[50%] top-0 h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-800 opacity-50" aria-hidden="true">
       <defs>
@@ -12,15 +11,13 @@
   </div>
 
   <div class="mx-auto max-w-4xl">
-    <div class="bg-gray-800 rounded-lg shadow-xl border border-gray-700 overflow-hidden">
-      
-      <!-- 説明タイトル -->
-      <div class="px-6 py-5 border-b border-gray-700">
+    <div class="bg-gray-800 rounded-lg shadow-xl border border-gray-700 overflow-hidden pt-6">
+
+      <div class="px-6 py-5 border-b border-gray-700 text-center">
         <h3 class="text-xl font-semibold text-gray-200">トレーニング内容</h3>
       </div>
 
       <div class="p-6">
-        <!-- 説明セクション -->
         <div class="border border-gray-600 p-4 rounded bg-gray-700 text-gray-200 shadow-sm">
           <% if @workout.description.present? %>
             <div class="leading-relaxed space-y-2">
@@ -33,19 +30,6 @@
           <% end %>
         </div>
 
-        <!-- 日付・時間・完了状態 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-          <div class="p-3 bg-gray-800 text-gray-300 rounded border border-gray-600 shadow-sm">
-            <p class="text-lg"><strong>📅 日付:</strong> <%= @workout.date || "未設定" %></p>
-          </div>
-
-          <div class="p-3 bg-gray-800 text-gray-300 rounded border border-gray-600 shadow-sm">
-            <p class="text-lg"><strong>⏳ 時間:</strong> 
-              <%= @workout.start_time&.strftime("%Y-%m-%d %H:%M") || "未設定" %> 
-              〜 <%= @workout.end_time&.strftime("%Y-%m-%d %H:%M") || "未設定" %>
-            </p>
-          </div>
-          
           <div class="md:col-span-2 p-3 bg-gray-800 text-gray-300 rounded border border-gray-600 shadow-sm">
             <p class="text-lg"><strong>✅ 完了状態:</strong> 
               <span class="<%= @workout.completed ? 'text-green-400 font-bold' : 'text-red-400 font-bold' %>">
@@ -55,11 +39,11 @@
           </div>
         </div>
       </div>
-
-      <!-- 戻るボタン -->
+      
       <div class="bg-gray-700 px-6 py-4 border-t border-gray-600 flex justify-center">
-        <%= link_to "◀ メニューに戻る", workouts_path, class: "btn btn-warning btn-lg px-6 py-2 fw-bold text-gray-900 rounded-lg shadow-lg hover:bg-yellow-500 transition" %>
+        <%= link_to "◀ メニューに戻る", workouts_path, class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
       </div>
+
     </div>
   </div>
 </div>

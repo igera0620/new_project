@@ -19,7 +19,7 @@ class WorkoutsController < ApplicationController
         }
       end
     end
-  end        
+  end
 
   def generate_menu
     chatgpt_service = ChatGptService.new
@@ -56,8 +56,14 @@ class WorkoutsController < ApplicationController
   end
 
   def submit_feedback
-    @workout = current_user.workouts.where(start_time: Time.zone.today.beginning_of_day..Time.zone.today.end_of_day).order(created_at: :desc).first
-    return head :not_found if @workout.nil?
+    @workout = current_user.workouts.where(
+      start_time: Time.zone.today.beginning_of_day..Time.zone.today.end_of_day
+    ).order(created_at: :desc).first
+
+    unless @workout
+      flash[:alert] = "ワークアウトメニューを選択してください。"
+      redirect_to workouts_path and return
+    end
   
     @workout.completed = params[:completed] == 'true'
     if @workout.save
@@ -67,7 +73,7 @@ class WorkoutsController < ApplicationController
       flash.now[:alert] = "フィードバックの送信に失敗しました。"
       render :feedback, status: :unprocessable_entity
     end
-  end      
+  end
 
   def workout_completed
     @video_url = "https://www.youtube.com/embed/Wiho_VPbhZU?list=PL6lqpAyR_3TpQGzHLe4i8-ats_yL6ZlqW"
