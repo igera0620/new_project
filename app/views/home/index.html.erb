@@ -1,8 +1,6 @@
 <div class="relative isolate overflow-hidden bg-gray-900 min-h-screen bg-cover bg-center bg-fixed bg-blur" style="background-image: url('<%= asset_path("muscle-bg.jpg") %>');">
-  <!-- 背景のみにオーバーレイ & ぼかしを適用 -->
   <div class="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
 
-  <!-- 文字がぼやけないように `relative z-10` を適用 -->
   <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-20 text-center">
     <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
       筋肉は全てを解決する
@@ -12,8 +10,6 @@
     </p>
   </div>
 
-
-  <!-- 🏋️‍♂️ 筋トレのメリット -->
   <div class="relative z-10 mx-auto mt-12 sm:mt-16 max-w-4xl lg:mx-0 lg:max-w-none text-center fade-in">
     <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
       筋トレのメリット
@@ -35,7 +31,6 @@
     </div>
   </div>
 
-  <!-- 🏋️‍♂️ 使い方セクション -->
   <div class="relative z-10 mx-auto mt-12 sm:mt-16 max-w-4xl lg:mx-0 lg:max-w-none text-center fade-in">
     <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
       使い方の説明
@@ -55,7 +50,6 @@
     </div>
   </div>
 
-  <!-- 📅 ナビゲーションメニュー -->
   <div class="relative z-10 mx-auto mt-12 sm:mt-16 grid max-w-xl sm:max-w-2xl lg:max-w-none grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 fade-in">
     <%= render "shared/home_link", path: workouts_path, title: "メニューを組みたい方はこちら", description: "条件を提示して、自分の環境、レベルに適したメニューを組んでもらおう！", icon_class: "text-indigo-400" %>
 
