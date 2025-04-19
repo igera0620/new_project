@@ -1,3 +1,3 @@
 require 'redis'
 
-REDIS = Redis.new(url: ENV.fetch('REDIS_URL', 'rediss://default:AT9bAAIjcDE4YTVjMzNkOThiNjM0NzE2OGY0NDM4ZGZiNDUzZTAzMnAxMA@pleased-marten-16219.upstash.io:6379'))
+REDIS = Redis.new(url: ENV.fetch('REDIS_URL', 'redis://default:AUUdAAIjcDEzMDdmODRlMDRlYWU0Y2NiYTI4ZDAwYjU4NDk1YzM4Y3AxMA@loving-dingo-17693.upstash.io:6379'))
